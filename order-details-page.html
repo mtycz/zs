@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>订单详情</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome-5.15.2.all.css">
+		<link rel="stylesheet" type="text/css" href="com.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+		<style>
+			@media (min-width: 640px) {
+
+				/* 当屏幕宽度大于等于 640px（PC 端）时的样式 */
+				#prevOrder,
+				#nextOrder {
+					padding: 24px;
+					/* 将内边距设置为 12px，您可以根据需要调整此值 */
+				}
+			}
+
+			@media (max-width: 639px) {
+
+				/* 当屏幕宽度小于 640px（手机端）时的样式 */
+				#prevOrder,
+				#nextOrder {
+					padding: 4px;
+					/* 将内边距设置为 4px，您可以根据需要调整此值 */
+				}
+			}
+			
+		</style>
+
+	</head>
+	<body class="bg-gray-100 font-sans" onload="loadHeader()">
+
+
+
+
+
+		<div class="container mx-auto px-4 py-16 relative">
+			<div class="flex items-center mb-6 cursor-pointer" onclick="goToOrderListingPage()">
+				<i class="fas fa-arrow-left text-blue-500 mr-4"></i>
+				<h1 class="text-2xl font-bold">返回订单列表</h1>
+			</div>
+
+			<script>
+				function goToOrderListingPage() {
+					window.location.href = 'order-listing-page.html';
+				}
+			</script>
+			<button id="prevOrder" class="fixed left-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white rounded-full shadow-lg">
+				<i class="fas fa-chevron-left"></i>
+			</button>
+			<button id="nextOrder" class="fixed right-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white rounded-full shadow-lg">
+				<i class="fas fa-chevron-right"></i>
+			</button>
+			<div class="bg-white rounded-lg shadow-md p-6">
+				<div class="flex justify-end">
+					<button id="signupButton" class="bg-blue-500 text-white p-2 rounded-full shadow-lg">立即报名</button>
+					<button id="shareButton" class="bg-green-500 text-white p-2 rounded-full shadow-lg ml-4">我要分享</button>
+				</div>
+				<div id="shareModal" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-999 bg-white p-4 rounded-md shadow-md max-w-[400px] w-[80%]">
+					<div class="flex justify-between items-center mb-4">
+						<span><strong>分享信息</strong></span>
+						<button id="closeShareModal" class="text-xl">&times;</button>
+					</div>
+					<textarea id="shareTextarea" readonly class="p-4 overflow-y-hidden w-full h-64 resize-none min-h-64 max-h-64 bg-gray-200"
+					 style="display: block;"></textarea>
+					<div class="flex justify-center">
+						<!-- 添加这一行来居中按钮 -->
+						<button id="copyButton" class="mt-2 bg-blue-500 text-white p-2 rounded-lg shadow-lg">复制</button>
+					</div>
+				</div>
+
+				<div id="toast" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white p-4 rounded-md shadow-md">
+					<p>已复制到剪贴板</p>
+				</div>
+				<script type="text/javascript">
+					document.getElementById('copyButton').addEventListener('click', function() {
+						const textarea = document.getElementById('shareTextarea');
+						textarea.select();
+						document.execCommand('copy');
+
+						// 显示 Toast
+						document.getElementById('toast').classList.remove('hidden');
+
+						// 3 秒后隐藏 Toast
+						setTimeout(() => {
+							document.getElementById('toast').classList.add('hidden');
+						}, 3000);
+					});
+				</script>
+
+
+
+				<div class="mb-6">
+					<h2 class="text-xl font-semibold mb-2" id="orderTitle"></h2>
+					<span class="bg-purple-100 text-purple-800 border-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded" id="orderType"></span>
+				</div>
+
+				<div class="text-orange-500 mb-6" id="priceInfo"></div>
+
+				<div class="border-t border-gray-200 pt-4">
+					<h3 class="text-lg font-semibold mb-2">需求信息 <span id="partyType" class="px-2.5 py-0.5 rounded"></span></h3>
+					<div class="grid grid-cols-2 gap-4">
+						<div>
+							<p class="text-gray-600">订单类型：<span id="orderCategory"></span></p>
+							<p class="text-gray-600">订单预算：<span id="orderBudget"></span></p>
+							<p class="text-gray-600">有效时间：<span id="orderDuration"></span></p>
+						</div>
+						<div>
+							<p class="text-gray-600">内容分类：<span id="contentType"></span></p>
+							<p class="text-gray-600">需求数量：<span id="orderQuantity"></span></p>
+							<p class="text-gray-600">订单编号：<span id="orderNumber"></span></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="border-t border-gray-200 pt-4 mt-4">
+					<h3 class="text-lg font-semibold mb-2">内容要求</h3>
+					<div id="contentRequirements" class="text-gray-700"></div>
+				</div>
+
+				<div class="border-t border-gray-200 pt-4 mt-4">
+					<h3 class="text-lg font-semibold mb-2">收益说明</h3>
+					<div id="earningsDescription" class="text-gray-700"></div>
+				</div>
+
+				<div class="border-t border-gray-200 pt-4 mt-4">
+					<h3 class="text-lg font-semibold mb-2">详细说明</h3>
+					<div id="detailedDescription" class="text-gray-700"></div>
+				</div>
+			</div>
+		</div>
+
+
+		<script>
+			// Mapping functions
+			function mapOrderType(code) {
+				const typeMap = {
+					'd2uc4mj4fxf': '账号入驻',
+					'ifktrdyaug0': '新视频制作',
+					'ue583ornr9o': '库存视频采购',
+					'va02uanp899': '账号代运营',
+					'nw3ju20g0s7': '图文走制',
+					'zfqc4ly9hf7': '图文采购',
+					'tneuzv2xjw6': '活动邀约',
+					'j2lx6ylfypl': '直播代运营'
+				};
+				return typeMap[code] || code;
+			}
+			
+		
+			function mapContentType(code) {
+				const contentMap = {
+					'gv8uoafrh9z': '金融',
+					'puapewv5xw6': '汽车',
+					'u8f31ra4khm': '影视',
+					'rObwdmagdhk': '音乐',
+					'c4jzw2xpezf': '舞蹈',
+					'lfltfd9xcs0': '教育',
+					'ymgk2xo9tzy': '搞笑',
+					'vcfymafn40m': '综合',
+					'e67a087esqm': '科技',
+					'xh36howtrkf': '医疗健康',
+					'c2g85w9uoyo': '生活',
+					'eqgqv4zxs6a': '时尚',
+					'eifxu2p3mzw': '美食',
+					'te5b043gdi7': '二次元',
+					'h4ccldggihj': '游戏',
+					'50tjdj5ncrs': '旅游',
+					'eolalp1212h': '动画',
+					'e4nufmlxioe': '民生',
+					'j3uw7uyuxi': '育儿',
+					'gehyh5k093p': '健身',
+					'5fk2a0t6h7k': '科普',
+					'306ik8jfo3y': '美女',
+					'lwiav43illb': '职场',
+					'jwfzm43lwyo': '户外',
+					'ljycnhza8e2': '三农',
+					'5km2ailvhny': '情感',
+					'p2qvosotu0y': '萌宠',
+					'waz8j4tixfo': '摄影'
+				};
+				return contentMap[code] || code;
+			}
+
+			function getCurrentOrderIdFromUrl() {
+				const urlParams = new URLSearchParams(window.location.search);
+				const currentOrderId = parseInt(urlParams.get('currentOrderId'));
+				return currentOrderId || 1; // 如果没有获取到，默认值为 1
+			}
+
+			let currentOrderId = getCurrentOrderIdFromUrl();
+
+			function fetchOrder(id) {
+				fetch(`http://192.168.3.105:13000/api/Order:get?filterByTk=${id}&filter=%7B%22f_pxc7nh2j1l1%22%3A%227fozvo26oqm%22%7D`, {
+						headers: {
+							'accept': 'application/json',
+							'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoicl9yYWYzMXZha24zNSIsImlhdCI6MTcyMjY3NzM1MiwiZXhwIjozMzI4MDI3NzM1Mn0.9G1DQq7G6yDD2mefvZ-IxMgeEvhzOuymeB6n0TuVDz4'
+						}
+					})
+					.then(response => response.json())
+					.then(data => {
+    if (data === null || data.data === null) {
+        alert("该订单已下架");
+        return;
+    }
+
+    const order = data.data;
+    document.getElementById('orderTitle').textContent = order.f_0umtpxkakrb;
+    const mappedOrderType = mapOrderType(order.f_32jflifocbc);
+    document.getElementById('orderType').textContent = mappedOrderType;
+    document.getElementById('orderCategory').textContent = mappedOrderType;
+    document.getElementById('priceInfo').textContent = order.f_omokutprq36 === '40spaxibff4'? '报名询价' : order.f_kalomvbbbxa +' 元';
+    document.getElementById('contentType').textContent = mapContentType(order.f_keedm2xu11w);
+    document.getElementById('orderBudget').textContent = order.f_omokutprq36 === '40spaxibff4'? '报名询价' : order.f_kalomvbbbxa +' 元';
+    document.getElementById('orderQuantity').textContent = order.f_0javxizhm56 +' 个';
+    document.getElementById('orderDuration').textContent = new Date(order.f_we9bq48ixme).toLocaleDateString() +' - '+ new Date(order.f_s1wlu2xas5j).toLocaleDateString();
+    document.getElementById('orderNumber').textContent = order.id;
+    document.getElementById('contentRequirements').innerHTML = order.f_gs4grbpayfb;
+    document.getElementById('earningsDescription').innerHTML = order.f_knj9r8ahipj;
+    document.getElementById('detailedDescription').innerHTML = order.f_cvh1cmkwwex;
+
+    const orderTitle = order.f_0umtpxkakrb;
+    const currentRoute = window.location.href;
+    const timestamp = Date.now();
+
+    // 将分享信息填充到隐藏的文本域中
+    const shareMessage = `你的好友分享了订单【${orderTitle}】，查看详情链接：${currentRoute}?t=${timestamp}`;
+    document.getElementById('shareTextarea').value = shareMessage;
+
+    // 新增的甲乙类型显示逻辑
+    const partyType = order.f_s0a4gk3seo8;
+    if (partyType === '4uvhvy51ipv') {
+        document.getElementById('partyType').classList.add('bg-red-100', 'text-red-800', 'border-red-800', 'border-2');
+        document.getElementById('partyType').textContent = '找甲方';
+    } else if (partyType === 'ozh4tug13t9') {
+        document.getElementById('partyType').classList.add('bg-cyan-100', 'text-cyan-800', 'border-cyan-800', 'border-2');
+        document.getElementById('partyType').textContent = '找乙方';
+    }
+})
+					.catch(error => console.error('Error:', error));
+			}
+
+			document.getElementById('prevOrder').addEventListener('click', () => {
+				currentOrderId--;
+				window.location.href = `?currentOrderId=${currentOrderId}`;
+				fetchOrder(currentOrderId);
+			});
+
+			document.getElementById('nextOrder').addEventListener('click', () => {
+				currentOrderId++;
+				window.location.href = `?currentOrderId=${currentOrderId}`;
+				fetchOrder(currentOrderId);
+			});
+			
+			// 处理分享按钮的点击事件
+document.getElementById('shareButton').addEventListener('click', function () {
+    document.getElementById('shareModal').style.display = 'block';
+});
+
+// 处理分享模态框关闭按钮的点击事件
+document.getElementById('closeShareModal').addEventListener('click', function () {
+    document.getElementById('shareModal').style.display = 'none';
+});
+
+			// Initial fetch初始获取订单数据
+			fetchOrder(currentOrderId);
+			
+
+
+
+
+		</script>
+		<div id="signupModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+			<div class="flex justify-between items-center mb-4">
+				<span><strong>报名表单</strong></span>
+				<button id="closeModal" class="text-xl">&times;</button>
+			</div>
+			<form id="signupForm">
+				<div class="mb-4">
+					<label for="name">姓名 <span style="color: red;">*</span></label>
+					<input type="text" id="name" name="f_4ei8wne7cf8" class="w-full p-2 border" required>
+				</div>
+				<div class="mb-4">
+					<label for="phone">手机号 <span style="color: red;">*</span></label>
+					<input type="tel" id="phone" name="f_mjoc3ott3q8" class="w-full p-2 border" required pattern="[0-9]{11}">
+				</div>
+				<div class="mb-4">
+					<label for="wechat">微信 <span style="color: red;">*</span></label>
+					<input type="text" id="wechat" name="f_w6js2s4dzly" class="w-full p-2 border" required>
+				</div>
+				<div class="mb-4">
+					<label for="mainBusiness">主营业务 <span style="color: red;">*</span></label>
+					<textarea id="mainBusiness" name="f_cnftmirjyww" class="w-full p-2 border" required></textarea>
+				</div>
+				<div class="mb-4">
+					<label for="email">邮箱 <span style="color: red;">*</span></label>
+					<input type="email" id="email" name="f_k46y7gjcj9r" class="w-full p-2 border" required>
+				</div>
+				<div class="mb-4">
+					<label for="company">公司/自媒体名称 <span style="color: red;">*</span></label>
+					<input type="text" id="company" name="f_woqbsb3gzlf" class="w-full p-2 border" required>
+				</div>
+				<!-- <div class="mb-4">
+                <label for="upload">上传资料</label>
+                <input type="file" id="upload" name="f_xthdcxfxvkg" class="w-full p-2 border">
+            </div> -->
+				<div class="flex justify-end">
+					<button type="submit" class="bg-blue-500 text-white p-2 rounded-lg shadow-lg">提交报名</button>
+				</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+			// 打开关闭模态框
+
+			// 打开模态框
+			document.getElementById('signupButton').addEventListener('click', function() {
+				document.getElementById('signupModal').style.display = 'block';
+				console.log("1");
+			});
+			// 点击关闭按钮 X 关闭模态框
+			document.getElementById('closeModal').addEventListener('click', function() {
+				document.getElementById('signupModal').style.display = 'none';
+				console.log("2");
+			});
+
+
+
+			//模态框字段校验
+			document.querySelector('form').addEventListener('submit', (event) => {
+				const name = document.getElementById('name').value;
+				const phone = document.getElementById('phone').value;
+				const wechat = document.getElementById('wechat').value;
+				const mainBusiness = document.getElementById('mainBusiness').value;
+				const email = document.getElementById('email').value;
+				const company = document.getElementById('company').value;
+
+				if (!name || !phone || !wechat || !mainBusiness || !email || !company) {
+					event.preventDefault();
+					alert('所有必填字段都需要填写！');
+				} else if (!/^\d{11}$/.test(phone)) {
+					event.preventDefault();
+					alert('手机号格式不正确，请输入 11 位数字！');
+				}
+			});
+
+
+			// Load stored form data
+			function loadStoredFormData() {
+				const storedData = JSON.parse(localStorage.getItem('formData')) || {};
+				Object.keys(storedData).forEach(key => {
+					const element = document.getElementById(key);
+					if (element) {
+						element.value = storedData[key];
+					}
+				});
+			}
+
+			// Store form data
+			function storeFormData() {
+				const formData = {};
+				const form = document.getElementById('signupForm');
+				Array.from(form.elements).forEach(element => {
+					if (element.name && element.value) {
+						formData[element.id] = element.value;
+					}
+				});
+				localStorage.setItem('formData', JSON.stringify(formData));
+			}
+
+			// Form submission
+			document.getElementById('signupForm').addEventListener('submit', async (event) => {
+				event.preventDefault();
+
+				const formData = new FormData(event.target);
+				const data = Object.fromEntries(formData);
+
+				// Add order ID and title
+				data.f_z5x9kbj3oht = currentOrderId;
+				data.f_fb3f67anept = document.getElementById('orderTitle').textContent;
+
+				try {
+					const response = await fetch('http://192.168.3.105:13000/api/Registration:create', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyMjUxODUwNywiZXhwIjoxNzIzMTIzMzA3fQ.eLVvuCDmiwC0cbcRTca6pdxZFlZB7W9SXYNg1Tnu4_g'
+						},
+						body: JSON.stringify(data)
+					});
+
+					if (response.status === 200) {
+						alert('报名成功！请等待客服联系');
+						storeFormData();
+						document.getElementById('signupModal').style.display = 'none';
+					} else {
+						alert('报名失败，请重试。');
+					}
+				} catch (error) {
+					console.error('Error:', error);
+					alert('报名失败，请重试。');
+				}
+			});
+		</script>
+
+
+		<script src="com.js"></script>
+
+	</body>
+</html>

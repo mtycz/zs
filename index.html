@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>VidOps 视频剪辑与代运营服务</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome-5.15.2.all.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="com.css"/>
+		
+
+			
+		<style>
+	
+  </style>
+	</head>
+
+	<body class="font-sans" onload="loadHeader()">
+
+
+
+		<main>
+			<section id="home" class="h-screen bg-blue-600 flex items-center relative">
+				<div class="container mx-auto px-6">
+					<div class="slick-carousel">
+						<div class="text-center text-white">
+							<h1 class="text-5xl font-bold mb-4">专业视频剪辑与代运营服务</h1>
+							<p class="text-xl mb-8">让您的内容脱颖而出，吸引更多关注</p>
+							<a href="#contact" class="inline-block bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-100 transition duration-300">免费咨询</a>
+						</div>
+						<div class="text-center text-white">
+							<h1 class="text-5xl font-bold mb-4">创新视频内容策略</h1>
+							<p class="text-xl mb-8">定制化方案，助您快速积累粉丝</p>
+							<a href="#services" class="inline-block bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-100 transition duration-300">了解更多</a>
+						</div>
+						<div class="text-center text-white">
+							<h1 class="text-5xl font-bold mb-4">一站式视频营销解决方案</h1>
+							<p class="text-xl mb-8">从创意到执行，全程为您保驾护航</p>
+							<a href="#advantages" class="inline-block bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-100 transition duration-300">我们的优势</a>
+						</div>
+					</div>
+				</div>
+				<div class="scroll-down text-white" onclick="scrollToNextSection()">
+					<i class="fas fa-chevron-down fa-2x"></i>
+				</div>
+			</section>
+
+			<section id="services" class="py-20 bg-gray-100">
+				<div class="container mx-auto px-6">
+					<h2 class="text-3xl font-bold text-center mb-12">我们的服务</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+						<div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+							<img src="https://via.placeholder.com/150x150?text=视频剪辑" alt="视频剪辑" class="w-16 h-16 mx-auto mb-4">
+							<h3 class="text-xl font-semibold mb-2">视频剪辑</h3>
+							<p>专业剪辑团队，为您打造精彩视频内容</p>
+						</div>
+						<div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+							<img src="https://via.placeholder.com/150x150?text=特效制作" alt="特效制作" class="w-16 h-16 mx-auto mb-4">
+							<h3 class="text-xl font-semibold mb-2">特效制作</h3>
+							<p>创意特效，让您的视频更具吸引力</p>
+						</div>
+						<div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+							<img src="https://via.placeholder.com/150x150?text=内容策划" alt="内容策划" class="w-16 h-16 mx-auto mb-4">
+							<h3 class="text-xl font-semibold mb-2">内容策划</h3>
+							<p>定制内容策略，提升账号影响力</p>
+						</div>
+						<div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+							<img src="https://via.placeholder.com/150x150?text=账号运营" alt="账号运营" class="w-16 h-16 mx-auto mb-4">
+							<h3 class="text-xl font-semibold mb-2">账号运营</h3>
+							<p>全面代运营，助您轻松积累粉丝</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="advantages" class="py-20 bg-blue-600 text-white">
+				<div class="container mx-auto px-6">
+					<h2 class="text-3xl font-bold text-center mb-12">为什么选择我们</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+						<div class="text-center">
+							<img src="https://via.placeholder.com/150x150?text=经验丰富" alt="经验丰富" class="w-16 h-16 mx-auto mb-4">
+							<h3 class="text-xl font-semibold mb-2">经验丰富</h3>
+							<p>多年行业经验，了解各平台特性</p>
+						</div>
+						<div class="text-center">
+							<img src="https://via.placeholder.com/150x150?text=创意无限" alt="创意无限" class="w-16 h-16 mx-auto mb-4">
+							<h3 class="text-xl font-semibold mb-2">创意无限</h3>
+							<p>紧跟潮流，创新内容形式</p>
+						</div>
+						<div class="text-center">
+							<img src="https://via.placeholder.com/150x150?text=快速交付" alt="快速交付" class="w-16 h-16 mx-auto mb-4">
+							<h3 class="text-xl font-semibold mb-2">快速交付</h3>
+							<p>高效工作流程，按时保质完成</p>
+						</div>
+						<div class="text-center">
+							<img src="https://via.placeholder.com/150x150?text=一站式服务" alt="一站式服务" class="w-16 h-16 mx-auto mb-4">
+							<h3 class="text-xl font-semibold mb-2">一站式服务</h3>
+							<p>从策划到执行，全程无忧</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="clients" class="section py-20 bg-gray-100 overflow-hidden">
+				<div class="container mx-auto px-6">
+					<h2 class="text-3xl font-bold text-center mb-12">我们的客户</h2>
+					<div class="relative overflow-hidden" style="height: 200px;">
+						<div id="clientSlider" class="flex transition-transform duration-500 ease-in-out">
+							<img src="https://via.placeholder.com/150x150?text=客户1" alt="客户1" class="mx-4">
+							<img src="https://via.placeholder.com/150x150?text=客户2" alt="客户2" class="mx-4">
+							<img src="https://via.placeholder.com/150x150?text=客户3" alt="客户3" class="mx-4">
+							<img src="https://via.placeholder.com/150x150?text=客户4" alt="客户4" class="mx-4">
+							<img src="https://via.placeholder.com/150x150?text=客户5" alt="客户5" class="mx-4">
+							<img src="https://via.placeholder.com/150x150?text=客户6" alt="客户6" class="mx-4">
+							<img src="https://via.placeholder.com/150x150?text=客户7" alt="客户7" class="mx-4">
+							<img src="https://via.placeholder.com/150x150?text=客户8" alt="客户8" class="mx-4">
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+			<section id="contact" class="py-20 bg-white">
+				<div class="container mx-auto px-6">
+					<h2 class="text-3xl font-bold text-center mb-12">联系我们</h2>
+					<form id="contactForm" class="max-w-2xl mx-auto">
+						<div class="flex mb-4 space-x-4">
+							<div class="flex-1">
+								<label for="company" class="block mb-2">企业名称</label>
+								<input type="text" id="company" name="f_e9o061hn7ff" class="w-full px-3 py-2 border rounded" required>
+							</div>
+							<div class="flex-1">
+								<label for="position" class="block mb-2">职位</label>
+								<input type="text" id="position" name="f_qy5meqx8tcp" class="w-full px-3 py-2 border rounded" required>
+							</div>
+						</div>
+						<div class="flex mb-4 space-x-4">
+							<div class="flex-1">
+								<label for="name" class="block mb-2">姓名</label>
+								<input type="text" id="name" name="f_o278rlva5q9" class="w-full px-3 py-2 border rounded" required>
+							</div>
+							<div class="flex-1">
+								<label for="phone" class="block mb-2">电话</label>
+								<input type="tel" id="phone" name="f_lem420colnp" class="w-full px-3 py-2 border rounded" required>
+							</div>
+						</div>
+						<div class="mb-4">
+							<label for="email" class="block mb-2">邮箱</label>
+							<input type="email" id="email" name="f_0qzuwywhr1f" class="w-full px-3 py-2 border rounded" required>
+						</div>
+						<div class="mb-4">
+							<label for="message" class="block mb-2">留言</label>
+							<textarea id="message" name="f_z9rldm5zav0" class="w-full px-3 py-2 border rounded" rows="4" required></textarea>
+						</div>
+						<div class="text-center">
+							<button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700 transition duration-300">立即提交</button>
+						</div>
+					</form>
+				</div>
+			</section>
+		</main>
+
+		<footer class="bg-gray-800 text-white py-6">
+			<div class="container mx-auto px-6 text-center">
+				<p>© 2024 VidOps 视频剪辑与代运营服务. All rights reserved.</p>
+			</div>
+		</footer>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+		<script src="com.js"></script>
+		<script>
+			$(document).ready(function() {
+				// 初始化轮播图
+				$('.slick-carousel').slick({
+					dots: true,
+					infinite: true,
+					speed: 500,
+					fade: true,
+					cssEase: 'linear',
+					autoplay: true,
+					autoplaySpeed: 5000
+				});
+
+				// 页面滚动时改变 header 样式
+				$(window).scroll(function() {
+					if ($(window).scrollTop() > 50) {
+						$('.header').addClass('scrolled');
+					} else {
+						$('.header').removeClass('scrolled');
+					}
+				});
+
+				// 平滑滚动到锚点
+				$('a[href^="#"]').on('click', function(event) {
+					var target = $(this.getAttribute('href'));
+					if (target.length) {
+						event.preventDefault();
+						$('html, body').stop().animate({
+							scrollTop: target.offset().top - 100
+						}, 1000);
+					}
+				});
+			});
+		</script>
+
+		<!-- 汉堡菜单效果和下箭头点击滚动 -->
+		<script>
+			
+
+			function scrollToNextSection() {
+				const currentSection = document.querySelector('section:not([style*="display: none"])');
+				const nextSection = currentSection.nextElementSibling;
+				if (nextSection) {
+					const startPosition = window.pageYOffset;
+					const targetPosition = nextSection.offsetTop;
+					const distance = targetPosition - startPosition;
+					const duration = 800; // 滚动持续时间（毫秒）
+					let start = null;
+
+					function step(timestamp) {
+						if (!start) start = timestamp;
+						const progress = timestamp - start;
+						window.scrollTo(0, easeInOutCubic(progress, startPosition, distance, duration));
+						if (progress < duration) {
+							window.requestAnimationFrame(step);
+						}
+					}
+
+					function easeInOutCubic(t, b, c, d) {
+						t /= d / 2;
+						if (t < 1) return c / 2 * t * t * t + b;
+						t -= 2;
+						return c / 2 * (t * t * t + 2) + b;
+					}
+
+					window.requestAnimationFrame(step);
+				}
+			}
+		</script>
+
+		<!-- 我们的客户滚动 -->
+		<script>
+			function setupClientScroll() {
+				const slider = document.getElementById('clientSlider');
+				const slides = Array.from(slider.children);
+				const slideWidth = slides[0].offsetWidth + 32; // 图片宽度 + 左右margin
+				let currentIndex = 0;
+				let isScrolling = false;
+
+				// 复制前两个客户图片并添加到滑块末尾
+				for (let i = 0; i < 8; i++) {
+					const clone = slides[i].cloneNode(true);
+					slider.appendChild(clone);
+				}
+
+				function scroll() {
+					if (isScrolling) return;
+					isScrolling = true;
+					currentIndex++;
+					slider.style.transition = 'transform 0.5s ease-in-out';
+					slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+					if (currentIndex >= slides.length) {
+						setTimeout(() => {
+							slider.style.transition = 'none';
+							currentIndex = 0;
+							slider.style.transform = 'translateX(0)';
+							setTimeout(() => {
+								slider.style.transition = 'transform 0.5s ease-in-out';
+								isScrolling = false;
+							}, 50);
+						}, 500);
+					} else {
+						setTimeout(() => {
+							isScrolling = false;
+						}, 500);
+					}
+				}
+
+				// 使用 requestAnimationFrame 来优化性能
+				let scrollTimer;
+
+				function scheduleNextScroll() {
+					scrollTimer = requestAnimationFrame(() => {
+						scroll();
+						setTimeout(scheduleNextScroll, 3000); // 3秒后安排下一次滚动
+					});
+				}
+
+				// 开始滚动
+				scheduleNextScroll();
+
+				// 当页面不可见时暂停滚动
+				document.addEventListener('visibilitychange', () => {
+					if (document.hidden) {
+						cancelAnimationFrame(scrollTimer);
+					} else {
+						scheduleNextScroll();
+					}
+				});
+			}
+
+			// 使用 requestIdleCallback 在浏览器空闲时初始化滚动
+			if ('requestIdleCallback' in window) {
+				requestIdleCallback(() => setupClientScroll());
+			} else {
+				window.addEventListener('load', setupClientScroll);
+			}
+		</script>
+
+		<!-- 联系我们表单 -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const form = document.getElementById('contactForm');
+				form.addEventListener('submit', function(e) {
+					e.preventDefault();
+
+					const formData = new FormData(form);
+					const data = Object.fromEntries(formData.entries());
+
+					// 添加其他必需的空字段
+					const emptyFields = ['f_0t3y74lvgpb', 'f_7w8i9xxtvsr', 'f_a8o4hjiglcn', 'f_8kcp8hrj302'];
+					emptyFields.forEach(field => {
+						data[field] = '';
+					});
+
+
+
+					fetch('http://serverfuwu.tpddns.cn:13000/api/Customer:create', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+								'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoicl9yYWYzMXZha24zNSIsImlhdCI6MTcyMjY3NzM1MiwiZXhwIjozMzI4MDI3NzM1Mn0.9G1DQq7G6yDD2mefvZ-IxMgeEvhzOuymeB6n0TuVDz4'
+							},
+							body: JSON.stringify(data)
+						})
+						.then(response => response.json())
+						.then(data => {
+							alert('提交成功！');
+							form.reset();
+						})
+						.catch((error) => {
+							console.error('Error:', error);
+							alert('提交失败，请稍后重试。');
+						});
+				});
+			});
+		</script>
+	</body>
+
+</html>
