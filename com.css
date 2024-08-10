@@ -78,6 +78,7 @@
 				align-items: center;  /* 内容居中 */
 				justify-content: center;  /* 内容垂直居中 */
 				height: 90%;  /* 占满整个抽屉高度 */
+				width: 90%;
 				
       }
 			  .hamburger-menu {

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>找乙方需求提交</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/zh.js"></script>
-<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome-5.15.2.all.css">
-<link rel="stylesheet" type="text/css" href="com.css"/>
-</head>
-<body class="bg-gray-100" onload="loadHeader()">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>找乙方需求提交</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.21.1/axios.min.js"></script>
+		<link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/flatpickr/4.6.9/flatpickr.min.css">
+		<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/flatpickr/4.6.9/flatpickr.min.js"></script>
+		<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/flatpickr/4.6.9/l10n/zh.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome-5.15.2.all.css">
+		<link rel="stylesheet" type="text/css" href="com.css" />
+	</head>
+	<body class="bg-gray-100" onload="loadHeader()">
 
-    <div class="container mx-auto px-4 py-16">
-		
+		<div class="container mx-auto px-4 py-16">
+
 			<div class="flex items-center mb-6 cursor-pointer" onclick="goToOrderListingPage()">
 				<i class="fas fa-arrow-left text-blue-500 mr-4"></i>
 				<h1 class="text-2xl font-bold">返回订单列表</h1>
@@ -25,176 +25,187 @@
 					window.location.href = 'order-listing-page.html';
 				}
 			</script>
-		
-		
-		
-        <div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
-            <h1 class="text-2xl font-bold mb-6">发布需求</h1>
-            <form id="orderForm" class="grid grid-cols-2 gap-4">
-                <div class="col-span-2">
-                    <label for="demandName" class="block mb-1 text-sm font-medium">需求方名称（公司/自媒体名称）：<span class="text-red-500">*</span></label>
-                    <input type="text" id="demandName" name="f_cgkelg03psy" class="w-full border rounded p-2 text-sm" required>
-                </div>
-                <div>
-                    <label for="name" class="block mb-1 text-sm font-medium">联系人姓名：<span class="text-red-500">*</span></label>
-                    <input type="text" id="name" name="f_1jo5z1nhap6" class="w-full border rounded p-2 text-sm" required>
-                </div>
-                <div>
-                    <label for="phone" class="block mb-1 text-sm font-medium">手机号：<span class="text-red-500">*</span></label>
-                    <input type="tel" id="phone" name="f_3f9udidu3du" class="w-full border rounded p-2 text-sm" required>
-                </div>
-                <div class="col-span-2">
-                    <label for="orderName" class="block mb-1 text-sm font-medium">订单名称：<span class="text-red-500">*</span></label>
-                    <input type="text" id="orderName" name="f_ml6rsmv3ntw" class="w-full border rounded p-2 text-sm" required>
-                </div>
-                <div class="col-span-2">
-                    <label class="block mb-1 text-sm font-medium">订单类型：<span class="text-red-500">*</span></label>
-                    <div class="grid grid-cols-4 gap-2">
-                        <label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="账号入驻" class="mr-2" required> <span class="text-sm">账号入驻</span></label>
-                        <label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="新视频制作" class="mr-2" required> <span class="text-sm">新视频制作</span></label>
-                        <label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="库存视频采购" class="mr-2" required> <span class="text-sm">库存视频采购</span></label>
-                        <label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="账号代运营" class="mr-2" required> <span class="text-sm">账号代运营</span></label>
-                        <label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="图文定制" class="mr-2" required> <span class="text-sm">图文定制</span></label>
-                        <label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="图文采购" class="mr-2" required> <span class="text-sm">图文采购</span></label>
-                        <label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="活动邀约" class="mr-2" required> <span class="text-sm">活动邀约</span></label>
-						<label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="活动邀约" class="mr-2" required> <span class="text-sm">直播代运营</span></label>
-                    </div>
-                </div>
-                <div class="relative">
-                    <label for="contentType" class="block mb-1 text-sm font-medium">内容分类：<span class="text-red-500">*</span></label>
-                    <div id="contentTypeDropdown" class="w-full border rounded p-2 text-sm cursor-pointer bg-white">请选择内容分类</div>
-                    <div id="contentTypeOptions" class="hidden absolute z-10 w-full mt-1 bg-white border rounded shadow-lg max-h-60 overflow-y-auto">
-                        <!-- 选项将通过 JavaScript 动态添加 -->
-                    </div>
-                </div>
-                <div>
-                    <label for="orderBudget" class="block mb-1 text-sm font-medium">订单预算（元）：</label>
-                    <input type="number" id="orderBudget" name="f_5sgl0xi0gxy" class="w-full border rounded p-2 text-sm">
-                </div>
-                <div>
-                    <label for="requiredQuantity" class="block mb-1 text-sm font-medium">需求数量（个）：</label>
-                    <input type="number" id="requiredQuantity" name="f_beiw5vrrm7l" class="w-full border rounded p-2 text-sm">
-                </div>
-                <div class="col-span-2">
-                    <label for="validPeriod" class="block mb-1 text-sm font-medium">有效时间：<span class="text-red-500">*</span></label>
-                    <input type="text" id="validPeriod" class="w-full border rounded p-2 text-sm" placeholder="选择时间范围" required>
-                    <input type="hidden" id="startDate" name="f_zftbrselsde">
-                    <input type="hidden" id="endDate" name="f_vab0qovpxpi">
-                </div>
-                <div class="col-span-2">
-                    <label for="contentRequirements" class="block mb-1 text-sm font-medium">内容要求：<span class="text-red-500">*</span></label>
-                    <textarea id="contentRequirements" name="f_4psu4v0hz2a" class="w-full border rounded p-2 text-sm" rows="2" maxlength="200" required></textarea>
-                </div>
-                <div class="col-span-2">
-                    <label for="collectionInstructions" class="block mb-1 text-sm font-medium">收益说明：</label>
-                    <textarea id="collectionInstructions" name="f_famwyjdiq3q" class="w-full border rounded p-2 text-sm" rows="2"></textarea>
-                </div>
-                <div class="col-span-2">
-                    <label for="detailedDescription" class="block mb-1 text-sm font-medium">详细说明：</label>
-                    <textarea id="detailedDescription" name="f_m95eyyx1ibe" class="w-full border rounded p-2 text-sm" rows="2"></textarea>
-                </div>
-                <div class="col-span-2 text-right">
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm">提交</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <script>
-        // 内容分类选项
-        const contentTypes = [
-            '金融', '汽车', '影视', '音乐', '舞蹈', '教育', '搞笑', '综合', '科技', '医疗健康',
-            '生活', '时尚', '美食', '二次元', '游戏', '旅游', '动画', '民生', '育儿', '健身',
-            '科普', '美女', '职场', '户外', '三农', '情感', '萌宠', '摄影'
-        ];
 
-        const contentTypeDropdown = document.getElementById('contentTypeDropdown');
-        const contentTypeOptions = document.getElementById('contentTypeOptions');
-        let selectedContentTypes = [];
 
-        // 创建内容分类选项
-        contentTypes.forEach(type => {
-            const option = document.createElement('div');
-            option.className = 'p-2 hover:bg-gray-100 cursor-pointer flex items-center';
-            option.innerHTML = `
+			<div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
+				<h1 class="text-2xl font-bold mb-6">发布需求</h1>
+				<form id="orderForm" class="grid grid-cols-2 gap-4">
+					<div class="col-span-2">
+						<label for="demandName" class="block mb-1 text-sm font-medium">需求方名称（公司/自媒体名称）：<span class="text-red-500">*</span></label>
+						<input type="text" id="demandName" name="f_cgkelg03psy" class="w-full border rounded p-2 text-sm" required>
+					</div>
+					<div>
+						<label for="name" class="block mb-1 text-sm font-medium">联系人姓名：<span class="text-red-500">*</span></label>
+						<input type="text" id="name" name="f_1jo5z1nhap6" class="w-full border rounded p-2 text-sm" required>
+					</div>
+					<div>
+						<label for="phone" class="block mb-1 text-sm font-medium">手机号：<span class="text-red-500">*</span></label>
+						<input type="tel" id="phone" name="f_3f9udidu3du" class="w-full border rounded p-2 text-sm" required>
+					</div>
+					<div class="col-span-2">
+						<label for="orderName" class="block mb-1 text-sm font-medium">订单名称：<span class="text-red-500">*</span></label>
+						<input type="text" id="orderName" name="f_ml6rsmv3ntw" class="w-full border rounded p-2 text-sm" required>
+					</div>
+					<div class="col-span-2">
+						<label class="block mb-1 text-sm font-medium">订单类型：<span class="text-red-500">*</span></label>
+						<div class="grid grid-cols-4 gap-2">
+							<label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="账号入驻" class="mr-2" required>
+								<span class="text-sm">账号入驻</span></label>
+							<label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="新视频制作" class="mr-2" required>
+								<span class="text-sm">新视频制作</span></label>
+							<label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="库存视频采购" class="mr-2" required>
+								<span class="text-sm">库存视频采购</span></label>
+							<label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="账号代运营" class="mr-2" required>
+								<span class="text-sm">账号代运营</span></label>
+							<label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="图文定制" class="mr-2" required>
+								<span class="text-sm">图文定制</span></label>
+							<label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="图文采购" class="mr-2" required>
+								<span class="text-sm">图文采购</span></label>
+							<label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="活动邀约" class="mr-2" required>
+								<span class="text-sm">活动邀约</span></label>
+							<label class="flex items-center"><input type="radio" name="f_7wuzj49nepv" value="活动邀约" class="mr-2" required>
+								<span class="text-sm">直播代运营</span></label>
+						</div>
+					</div>
+					<div class="relative">
+						<label for="contentType" class="block mb-1 text-sm font-medium">内容分类：<span class="text-red-500">*</span></label>
+						<div id="contentTypeDropdown" class="w-full border rounded p-2 text-sm cursor-pointer bg-white">请选择内容分类</div>
+						<div id="contentTypeOptions" class="hidden absolute z-10 w-full mt-1 bg-white border rounded shadow-lg max-h-60 overflow-y-auto">
+							<!-- 选项将通过 JavaScript 动态添加 -->
+						</div>
+					</div>
+					<div>
+						<label for="orderBudget" class="block mb-1 text-sm font-medium">订单预算（元）：</label>
+						<input type="number" id="orderBudget" name="f_5sgl0xi0gxy" class="w-full border rounded p-2 text-sm">
+					</div>
+					<div>
+						<label for="requiredQuantity" class="block mb-1 text-sm font-medium">需求数量（个）：</label>
+						<input type="number" id="requiredQuantity" name="f_beiw5vrrm7l" class="w-full border rounded p-2 text-sm">
+					</div>
+					<div class="col-span-2">
+						<label for="validPeriod" class="block mb-1 text-sm font-medium">有效时间：<span class="text-red-500">*</span></label>
+						<input type="text" id="validPeriod" class="w-full border rounded p-2 text-sm" placeholder="选择时间范围" required>
+						<input type="hidden" id="startDate" name="f_zftbrselsde">
+						<input type="hidden" id="endDate" name="f_vab0qovpxpi">
+					</div>
+					<div class="col-span-2">
+						<label for="contentRequirements" class="block mb-1 text-sm font-medium">内容要求：<span class="text-red-500">*</span></label>
+						<textarea id="contentRequirements" name="f_4psu4v0hz2a" class="w-full border rounded p-2 text-sm" rows="2"
+						 maxlength="200" required></textarea>
+					</div>
+					<div class="col-span-2">
+						<label for="collectionInstructions" class="block mb-1 text-sm font-medium">收益说明：</label>
+						<textarea id="collectionInstructions" name="f_famwyjdiq3q" class="w-full border rounded p-2 text-sm" rows="2"></textarea>
+					</div>
+					<div class="col-span-2">
+						<label for="detailedDescription" class="block mb-1 text-sm font-medium">详细说明：</label>
+						<textarea id="detailedDescription" name="f_m95eyyx1ibe" class="w-full border rounded p-2 text-sm" rows="2"></textarea>
+					</div>
+					<div class="col-span-2 text-right">
+						<button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm">提交</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script type="module">
+			import { globalUrl, globalAuthorization } from './TK.js';
+			// 内容分类选项
+			const contentTypes = [
+				'金融', '汽车', '影视', '音乐', '舞蹈', '教育', '搞笑', '综合', '科技', '医疗健康',
+				'生活', '时尚', '美食', '二次元', '游戏', '旅游', '动画', '民生', '育儿', '健身',
+				'科普', '美女', '职场', '户外', '三农', '情感', '萌宠', '摄影'
+			];
+
+			const contentTypeDropdown = document.getElementById('contentTypeDropdown');
+			const contentTypeOptions = document.getElementById('contentTypeOptions');
+			let selectedContentTypes = [];
+
+			// 创建内容分类选项
+			contentTypes.forEach(type => {
+				const option = document.createElement('div');
+				option.className = 'p-2 hover:bg-gray-100 cursor-pointer flex items-center';
+				option.innerHTML =
+					`
                 <input type="checkbox" value="${type}" class="mr-2">
                 <span>${type}</span>
             `;
-            contentTypeOptions.appendChild(option);
-        });
+				contentTypeOptions.appendChild(option);
+			});
 
-        // 切换下拉菜单显示
-        contentTypeDropdown.addEventListener('click', () => {
-            contentTypeOptions.classList.toggle('hidden');
-        });
+			// 切换下拉菜单显示
+			contentTypeDropdown.addEventListener('click', () => {
+				contentTypeOptions.classList.toggle('hidden');
+			});
 
-        // 处理选项选择
-        contentTypeOptions.addEventListener('change', (e) => {
-            if (e.target.type === 'checkbox') {
-                if (e.target.checked) {
-                    selectedContentTypes.push(e.target.value);
-                } else {
-                    selectedContentTypes = selectedContentTypes.filter(type => type !== e.target.value);
-                }
-                updateContentTypeDisplay();
-            }
-        });
+			// 处理选项选择
+			contentTypeOptions.addEventListener('change', (e) => {
+				if (e.target.type === 'checkbox') {
+					if (e.target.checked) {
+						selectedContentTypes.push(e.target.value);
+					} else {
+						selectedContentTypes = selectedContentTypes.filter(type => type !== e.target.value);
+					}
+					updateContentTypeDisplay();
+				}
+			});
 
-        // 更新显示的选中内容
-        function updateContentTypeDisplay() {
-            contentTypeDropdown.textContent = selectedContentTypes.length > 0 
-                ? selectedContentTypes.join(', ') 
-                : '请选择内容分类';
-        }
+			// 更新显示的选中内容
+			function updateContentTypeDisplay() {
+				contentTypeDropdown.textContent = selectedContentTypes.length > 0 ?
+					selectedContentTypes.join(', ') :
+					'请选择内容分类';
+			}
 
-        // 点击外部关闭下拉菜单
-        document.addEventListener('click', (e) => {
-            if (!contentTypeDropdown.contains(e.target) && !contentTypeOptions.contains(e.target)) {
-                contentTypeOptions.classList.add('hidden');
-            }
-        });
+			// 点击外部关闭下拉菜单
+			document.addEventListener('click', (e) => {
+				if (!contentTypeDropdown.contains(e.target) && !contentTypeOptions.contains(e.target)) {
+					contentTypeOptions.classList.add('hidden');
+				}
+			});
 
-        // 初始化日期范围选择器
-        flatpickr("#validPeriod", {
-            mode: "range",
-            dateFormat: "Y-m-d",
-            locale: "zh",
-            onChange: function(selectedDates, dateStr, instance) {
-                if (selectedDates.length === 2) {
-                    document.getElementById('startDate').value = selectedDates[0].toISOString();
-                    document.getElementById('endDate').value = selectedDates[1].toISOString();
-                }
-            }
-        });
+			// 初始化日期范围选择器
+			flatpickr("#validPeriod", {
+				mode: "range",
+				dateFormat: "Y-m-d",
+				locale: "zh",
+				onChange: function(selectedDates, dateStr, instance) {
+					if (selectedDates.length === 2) {
+						document.getElementById('startDate').value = selectedDates[0].toISOString();
+						document.getElementById('endDate').value = selectedDates[1].toISOString();
+					}
+				}
+			});
 
-        // 表单提交处理
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            // 处理多选的内容分类
-            data.f_bztut3uobiu = selectedContentTypes.join(',');
-            
-            // 日期已经在选择时被设置，不需要额外处理
+			// 表单提交处理
+			document.getElementById('orderForm').addEventListener('submit', function(e) {
+				e.preventDefault();
 
-            axios.post('http://192.168.3.105:13000/api/t_dtsmxferd5e:create', data, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyMjUxODUwNywiZXhwIjoxNzIzMTIzMzA3fQ.eLVvuCDmiwC0cbcRTca6pdxZFlZB7W9SXYNg1Tnu4_g'
-                }
-            })
-            .then(response => {
-                alert('提交成功！稍后工作人员将会与您联系~');
-                console.log(response.data);
-            })
-            .catch(error => {
-                alert('提交失败，请重试。');
-                console.error('Error:', error);
-            });
-        });
-    </script>
-	<script src="com.js"></script>
-</body>
+				const formData = new FormData(this);
+				const data = Object.fromEntries(formData.entries());
+
+				// 处理多选的内容分类
+				data.f_bztut3uobiu = selectedContentTypes.join(',');
+
+				// 日期已经在选择时被设置，不需要额外处理
+
+				axios.post(`${globalUrl}/api/t_dtsmxferd5e:create`, data, {
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': globalAuthorization
+  }
+})
+.then(response => {
+  alert('提交成功！稍后工作人员将会与您联系~');
+  console.log(response.data);
+})
+.catch(error => {
+  alert('提交失败，请重试。');
+  console.error('Error:', error);
+});
+			});
+		</script>
+		<script src="com.js"></script>
+	</body>
 </html>

@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>找甲方需求提交</title>
 		<script src="https://cdn.tailwindcss.com"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+		<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.21.1/axios.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome-5.15.2.all.css">
 		<link rel="stylesheet" type="text/css" href="com.css"/>
 	</head>
@@ -93,7 +93,8 @@
 			</div>
 		</div>
 
-		<script>
+		<script type="module">
+			import { globalUrl, globalAuthorization } from './TK.js';
 			const specialtyAreas = {
 				'新闻': ['时政', '社会'],
 				'娱乐': ['综艺', '明星'],
@@ -185,20 +186,20 @@
 				const formData = new FormData(this);
 				const data = Object.fromEntries(formData.entries());
 
-				axios.post('http://192.168.3.105:13000/api/t_nrluz6sdm7w:create', data, {
-						headers: {
-							'Content-Type': 'application/json',
-							'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyMjUxODUwNywiZXhwIjoxNzIzMTIzMzA3fQ.eLVvuCDmiwC0cbcRTca6pdxZFlZB7W9SXYNg1Tnu4_g'
-						}
-					})
-					.then(response => {
-						alert('提交成功！稍后工作人员将会与您联系~');
-						console.log(response.data);
-					})
-					.catch(error => {
-						alert('提交失败，请重试。');
-						console.error('Error:', error);
-					});
+				axios.post(`${globalUrl}/api/t_nrluz6sdm7w:create`, data, {
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': globalAuthorization
+  }
+})
+.then(response => {
+  alert('提交成功！稍后工作人员将会与您联系~');
+  console.log(response.data);
+})
+.catch(error => {
+  alert('提交失败，请重试。');
+  console.error('Error:', error);
+});
 			});
 		</script>
 		<script src="com.js"></script>

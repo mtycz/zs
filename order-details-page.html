@@ -7,8 +7,8 @@
 		<script src="https://cdn.tailwindcss.com"></script>
 		<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome-5.15.2.all.css">
 		<link rel="stylesheet" type="text/css" href="com.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+		<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/slick-carousel/1.8.1/slick.min.css">
+		<link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/slick-carousel/1.8.1/slick-theme.min.css">
 
 		<style>
 			@media (min-width: 640px) {
@@ -137,7 +137,8 @@
 		</div>
 
 
-		<script>
+		<script type="module">
+			import { globalUrl, globalAuthorization } from './TK.js';
 			// Mapping functions
 			function mapOrderType(code) {
 				const typeMap = {
@@ -196,19 +197,20 @@
 
 			let currentOrderId = getCurrentOrderIdFromUrl();
 
-			function fetchOrder(id) {
-				fetch(`http://192.168.3.105:13000/api/Order:get?filterByTk=${id}&filter=%7B%22f_pxc7nh2j1l1%22%3A%227fozvo26oqm%22%7D`, {
-						headers: {
-							'accept': 'application/json',
-							'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoicl9yYWYzMXZha24zNSIsImlhdCI6MTcyMjY3NzM1MiwiZXhwIjozMzI4MDI3NzM1Mn0.9G1DQq7G6yDD2mefvZ-IxMgeEvhzOuymeB6n0TuVDz4'
-						}
-					})
-					.then(response => response.json())
-					.then(data => {
-    if (data === null || data.data === null) {
-        alert("该订单已下架");
-        return;
-    }
+	function fetchOrder(id) {
+    fetch(`${globalUrl}/api/Order:get?filterByTk=${id}&filter=%7B%22f_pxc7nh2j1l1%22%3A%227fozvo26oqm%22%7D`, {
+        headers: {
+            'accept': 'application/json',
+            'Authorization': globalAuthorization
+        },
+				
+    })
+  .then(response => response.json())
+  .then(data => {
+        if (data === null || data.data === null) {
+            alert("该订单已下架");
+            return;
+        }
 
     const order = data.data;
     document.getElementById('orderTitle').textContent = order.f_0umtpxkakrb;
@@ -315,7 +317,9 @@ document.getElementById('closeShareModal').addEventListener('click', function ()
 				</div>
 			</form>
 		</div>
-		<script type="text/javascript">
+	
+	<script type="module">
+		import { globalUrl, globalAuthorization } from './TK.js';
 			// 打开关闭模态框
 
 			// 打开模态框
@@ -381,18 +385,25 @@ document.getElementById('closeShareModal').addEventListener('click', function ()
 				const data = Object.fromEntries(formData);
 
 				// Add order ID and title
+function getCurrentOrderIdFromUrl() {
+				const urlParams = new URLSearchParams(window.location.search);
+				const currentOrderId = parseInt(urlParams.get('currentOrderId'));
+				return currentOrderId || 1; // 如果没有获取到，默认值为 1
+			}
+
+			let currentOrderId = getCurrentOrderIdFromUrl();
 				data.f_z5x9kbj3oht = currentOrderId;
 				data.f_fb3f67anept = document.getElementById('orderTitle').textContent;
 
 				try {
-					const response = await fetch('http://192.168.3.105:13000/api/Registration:create', {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-							'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyMjUxODUwNywiZXhwIjoxNzIzMTIzMzA3fQ.eLVvuCDmiwC0cbcRTca6pdxZFlZB7W9SXYNg1Tnu4_g'
-						},
-						body: JSON.stringify(data)
-					});
+  const response = await fetch(`${globalUrl}/api/Registration:create`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': globalAuthorization
+    },
+    body: JSON.stringify(data)
+  });
 
 					if (response.status === 200) {
 						alert('报名成功！请等待客服联系');
