@@ -13,7 +13,16 @@
 			 .filter-option:hover, .filter-option.active {
 				@apply bg-blue-100 text-blue-600;
 			 }
+#customerCard,
+#contentCard {
+  @apply opacity-70 transition-opacity duration-300;
+}
 
+#customerCard:hover,
+#contentCard:hover {
+  @apply opacity-100 right-4;
+}
+		
 		</style>
 
 	</head>
@@ -297,8 +306,9 @@
 				</svg>
 			</button>
 
+
 			<!-- 找客户卡片 -->
-			<div id="customerCard" class=" bg-white rounded-xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center space-x-4 w-64  group hidden" onclick="window.location.href='find-client-form.html'">
+			<div id="customerCard" class=" bg-white rounded-xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center space-x-4 w-64  group hidden " onclick="window.location.href='find-client-form.html'">
 				<div class="flex-grow">
 					<p class="font-semibold text-lg text-gray-800 group-hover:text-blue-600 transition-colors duration-300">我要找客户</p>
 					<p class="text-sm text-blue-600 group-hover:text-blue-400 transition-colors duration-300">寻找甲方 &gt;&gt;&gt;</p>
@@ -334,6 +344,10 @@
 			
 			    // 点击悬浮按钮展开或收起卡片
 			    document.getElementById('toggleButton').addEventListener('click', function () {
+					if (isMobileDevice()) {
+    document.getElementById('customerCard').style.opacity = '1';
+    document.getElementById('contentCard').style.opacity = '1';
+  }
 			      this.classList.add('hidden');
 			      document.getElementById('customerCard').classList.remove('hidden');
 			      document.getElementById('contentCard').classList.remove('hidden');
@@ -341,7 +355,7 @@
 			        document.getElementById('customerCard').classList.add('hidden');
 			        document.getElementById('contentCard').classList.add('hidden');
 			        document.getElementById('toggleButton').classList.remove('hidden');
-			      }, 4000);
+			      }, 3500);
 			    });
 			
 			    // 点击页面其他地方收起卡片（移动端）
