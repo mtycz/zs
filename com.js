@@ -1,36 +1,45 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('header');
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMenu = document.getElementById('closeMenu');
 
-// 汉堡菜单效果
-function toggleMenu() {
-  var menu = document.getElementById("menu");
-  menu.classList.toggle("active");
-  $('.header').addClass('scrolled');
-  const hamburger = document.querySelector('.hamburger-menu');
-  menu.classList.toggle('hidden');
-  hamburger.classList.toggle('active');
-}
-
-// 共用 header 引入
-async function loadHeader() {
-  try {
-    const response = await fetch('header.html');
-    if (response.ok) {
-      const content = await response.text();
-      const div = document.createElement('div');
-      div.innerHTML = content;
-      document.body.insertBefore(div, document.body.firstChild);
-
-      // 获取当前页面的路径
-      var currentPage = window.location.pathname;
-
-      // 更通用的判断是否为 index 相关页面
-      if (!currentPage.endsWith('/index.html') &&!currentPage.endsWith('/index.htm') &&!currentPage.endsWith('/index.php')) {
-        div.querySelector('.header').classList.add('scrolled');
-      }
-
+const currentPage = window.location.pathname;
+if (currentPage.endsWith('index.html')) {
+  header.classList.remove('bg-white','shadow', 'text-black');
+  header.classList.add('bg-transparent', 'text-white');
+  // 处理滚动效果
+window.addEventListener('scroll', function() {
+  if (currentPage.endsWith('index.html')) {
+    if (window.scrollY > 50) {
+      header.classList.add('bg-white','shadow','text-black');
+      header.classList.remove('bg-transparent','text-white');
     } else {
-      console.error('Failed to load header');
+      header.classList.remove('bg-white','shadow','text-black');
+      header.classList.add('bg-transparent','text-white');
     }
-  } catch (error) {
-    console.error('Error loading header:', error);
   }
+});
 }
+
+  // 打开菜单
+  menuToggle.addEventListener('click', function() {
+		console.log("+++");
+    mobileMenu.classList.remove('translate-x-full');
+    mobileMenu.classList.add('slide-in');
+  });
+
+  // 关闭菜单
+  closeMenu.addEventListener('click', function() {
+		console.log("---");
+    mobileMenu.classList.remove('slide-in');
+    mobileMenu.classList.add('slide-out');
+    setTimeout(() => {
+      mobileMenu.classList.add('translate-x-full');
+      mobileMenu.classList.remove('slide-out');
+    }, 300);
+  });
+	
+
+})
+

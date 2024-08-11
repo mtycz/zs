@@ -1,24 +1,38 @@
-		<header class="header fixed w-full z-10 bg-transparent ">
-			<div class="flex">
-				<a href="index.html#home">
-					<img src="logo.png" alt="企业 LOGO" width="160" height="32" class="ml-8 mt-2">
-				</a>
-				<nav class="container mx-auto px-6 py-3 flex-grow justify-end">
-					<div class="hamburger-menu" onclick="toggleMenu()">
-						<div class="bar"></div>
-						<div class="bar"></div>
-						<div class="bar"></div>
-					</div>
-					<ul class="flex justify-end items-center gap-x-8 menu" id="menu">
-						<li><a href="index.html#home" class="text-white font-bold">首页</a></li>
-						<li><a href="order-listing-page.html" class="text-white">订单广场</a></li>
-						<!-- <li><a href="#services" class="text-white">服务</a></li>
-						<li><a href="#advantages" class="text-white">优势</a></li>
-						<li><a href="#clients" class="text-white">客户</a></li> -->
-						<li><a href="index.html#contact" class="text-white">联系我们</a></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-		
-		
+<!-- 头部导航栏 -->
+<header class="fixed w-full z-10 transition-all duration-300 ease-in-out text-black bg-white font-bold ">
+  <div class="flex justify-between items-center px-2 sm:px-4 lg:px-8 py-2">
+    <a href="index.html#home">
+      <img src="logo.png" alt="企业 LOGO" class="w-40 h-8">
+    </a>
+    
+    <!-- 汉堡菜单按钮 -->
+    <button id="menuToggle" class="md:hidden focus:outline-none">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+    
+    <!-- 桌面端导航菜单 -->
+    <nav class="hidden md:flex space-x-4">
+      <a href="index.html#home" class="">首页</a>
+      <a href="order-listing-page.html" class="">订单广场</a>
+      <a href="index.html#contact" class="">联系我们</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 移动端抽屉菜单 -->
+<div id="mobileMenu" class="fixed inset-y-0 right-0 w-64 bg-white shadow-md transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+  <div class="flex flex-col h-full">
+    <button id="closeMenu" class="self-end p-4">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <nav class="flex flex-col space-y-4 p-4">
+      <a href="index.html#home" class="text-gray-800 font-bold">首页</a>
+      <a href="order-listing-page.html" class="text-gray-800">订单广场</a>
+      <a href="index.html#contact" class="text-gray-800">联系我们</a>
+    </nav>
+  </div>
+</div>

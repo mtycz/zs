@@ -9,7 +9,27 @@
 		<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome-5.15.2.all.css">
 		<link rel="stylesheet" type="text/css" href="com.css"/>
 	</head>
-	<body class="bg-gray-100" onload="loadHeader()">
+	<body class="bg-gray-100">
+		<script>
+			async function loadHeader() {
+		  try {
+		    const response = await fetch('header.html');
+		    if (response.ok) {
+		      const content = await response.text();
+		      const div = document.createElement('div');
+		      div.innerHTML = content;
+		      document.body.insertBefore(div, document.body.firstChild);
+		
+
+		    } else {
+		      console.error('Failed to load header');
+		    }
+		  } catch (error) {
+		    console.error('Error loading header:', error);
+		  }
+		}
+		    loadHeader();
+  </script>
 
 		<div class="container mx-auto px-4 py-16">
 			<div class="flex items-center mb-6 cursor-pointer" onclick="goToOrderListingPage()">

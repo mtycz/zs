@@ -34,7 +34,28 @@
 		</style>
 
 	</head>
-	<body class="bg-gray-100 font-sans" onload="loadHeader()">
+	<body class="bg-gray-100 font-sans" >
+			<script>
+				async function loadHeader() {
+			  try {
+			    const response = await fetch('header.html');
+			    if (response.ok) {
+			      const content = await response.text();
+			      const div = document.createElement('div');
+			      div.innerHTML = content;
+			      document.body.insertBefore(div, document.body.firstChild);
+			
+	
+			    } else {
+			      console.error('Failed to load header');
+			    }
+			  } catch (error) {
+			    console.error('Error loading header:', error);
+			  }
+			}
+			    loadHeader();
+	  </script>
+	
 
 
 
@@ -406,7 +427,7 @@ function getCurrentOrderIdFromUrl() {
   });
 
 					if (response.status === 200) {
-						alert('报名成功！请等待客服联系');
+						alert('报名成功！请等待工作人员联系~');
 						storeFormData();
 						document.getElementById('signupModal').style.display = 'none';
 					} else {
