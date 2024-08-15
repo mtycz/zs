@@ -3,11 +3,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>找甲方需求提交</title>
+		<title data-i18n="findClient.pageTitle">找甲方需求提交</title>
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.21.1/axios.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome-5.15.2.all.css">
 		<link rel="stylesheet" type="text/css" href="com.css"/>
+		<script src="./i18n.js"></script>
 	</head>
 	<body class="bg-gray-100">
 		<script>
@@ -34,7 +35,7 @@
 		<div class="container mx-auto px-4 py-16">
 			<div class="flex items-center mb-6 cursor-pointer" onclick="goToOrderListingPage()">
 				<i class="fas fa-arrow-left text-blue-500 mr-4"></i>
-				<h1 class="text-2xl font-bold">返回订单列表</h1>
+				<h1 class="text-2xl font-bold" data-i18n="findClient.returnOrderListHeader">返回订单列表</h1>
 			</div>
 			<script>
 				function goToOrderListingPage() {
@@ -44,78 +45,108 @@
 
 
 			<div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
-				<h1 class="text-2xl font-bold mb-6">寻找客户</h1>
+				<h1 class="text-2xl font-bold mb-6" data-i18n="findClient.title">寻找客户</h1>
 				<form id="clientForm" class="space-y-4">
-					<div>
-						<label for="name" class="block mb-1 text-sm font-medium">联系人姓名：<span class="text-red-500">*</span></label>
-						<input type="text" id="name" name="f_lbt57bhha7j" class="w-full border rounded p-2 text-sm" required>
-					</div>
-					<div>
-						<label for="phone" class="block mb-1 text-sm font-medium">手机号：<span class="text-red-500">*</span></label>
-						<input type="tel" id="phone" name="f_nx04vljhdaj" class="w-full border rounded p-2 text-sm" required>
-					</div>
-					<div>
-						<label for="email" class="block mb-1 text-sm font-medium">邮箱：<span class="text-red-500">*</span></label>
-						<input type="email" id="email" name="f_39ct0iil8es" class="w-full border rounded p-2 text-sm" required>
-					</div>
-					<div>
-						<label for="company" class="block mb-1 text-sm font-medium">公司/自媒体名称：<span class="text-red-500">*</span></label>
-						<input type="text" id="company" name="f_25z6j9ms5rw" class="w-full border rounded p-2 text-sm" required>
-					</div>
-					<div>
-						<label for="specialtyArea" class="block mb-1 text-sm font-medium">擅长领域：<span class="text-red-500">*</span></label>
-						<div id="specialtyAreaDropdown" class="relative">
-							<div id="specialtyAreaDisplay" class="w-full border rounded p-2 text-sm cursor-pointer bg-white">请选择擅长领域</div>
-							<div id="specialtyAreaOptions" class="hidden absolute z-10 w-full mt-1 bg-white border rounded shadow-lg max-h-60 overflow-y-auto">
-								<!-- 选项将通过 JavaScript 动态添加 -->
-							</div>
-						</div>
-						<input type="hidden" id="specialtyAreaInput" name="f_wqit90xkemb">
-					</div>
-					<div>
-						<label class="block mb-1 text-sm font-medium">视频时长/直播：<span class="text-red-500">*</span></label>
-						<div class="space-x-4">
-							<label class="inline-flex items-center">
-								<input type="radio" name="f_87td2jqh959" value="30-60s" class="mr-2" required>
-								<span class="text-sm">30-60s</span>
-							</label>
-							<label class="inline-flex items-center">
-								<input type="radio" name="f_87td2jqh959" value="1min-3min" class="mr-2" required>
-								<span class="text-sm">1min-3min</span>
-							</label>
-							<label class="inline-flex items-center">
-								<input type="radio" name="f_87td2jqh959" value="3min-5min" class="mr-2" required>
-								<span class="text-sm">3min-5min</span>
-							</label>
-							<label class="inline-flex items-center">
-								<input type="radio" name="f_87td2jqh959" value="5min以上" class="mr-2" required>
-								<span class="text-sm">5min以上</span>
-							</label>
-							<label class="inline-flex items-center">
-								<input type="radio" name="f_87td2jqh959" value="直播" class="mr-2" required>
-								<span class="text-sm">直播</span>
-							</label>
-						</div>
-					</div>
-					<div>
-						<label for="requirements" class="block mb-1 text-sm font-medium">具体需求：<span class="text-red-500">*</span></label>
-						<textarea id="requirements" name="f_pirusecacs0" class="w-full border rounded p-2 text-sm" rows="6" maxlength="500"
-						 required placeholder="示例:
-我方擅长信息流视频和广告宣传视频的制作。视频时长通常为 1 - 2 分钟，可根据需求配备字幕和配音。
-从脚本创作到拍摄剪辑，再到后期制作、配音包装，我均可独立完成。收费标准通常为50元/条,会根据项目具体情况而定，需面议。
-正常制作周期约为 5 个工作日，若您有特殊需求，制作周期也可进行适当调整，以满足您的期望。"></textarea>
-						<div class="text-right text-sm text-gray-500"><span id="charCount">0</span> / 500</div>
-					</div>
-					<div class="text-right">
-						<button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm">提交</button>
-					</div>
-				</form>
+    <div>
+        <label for="name" class="block mb-1 text-sm font-medium">
+            <span data-i18n="findClient.contactName">联系人姓名：</span><span class="text-red-500">*</span>
+        </label>
+        <input type="text" id="name" name="f_lbt57bhha7j" class="w-full border rounded p-2 text-sm" required>
+    </div>
+    <div>
+        <label for="phone" class="block mb-1 text-sm font-medium">
+            <span data-i18n="findClient.phoneNumber">手机号：</span><span class="text-red-500">*</span>
+        </label>
+        <input type="tel" id="phone" name="f_nx04vljhdaj" class="w-full border rounded p-2 text-sm" required>
+    </div>
+    <div>
+        <label for="email" class="block mb-1 text-sm font-medium">
+            <span data-i18n="findClient.email">邮箱：</span><span class="text-red-500">*</span>
+        </label>
+        <input type="email" id="email" name="f_39ct0iil8es" class="w-full border rounded p-2 text-sm" required>
+    </div>
+    <div>
+        <label for="company" class="block mb-1 text-sm font-medium">
+            <span data-i18n="findClient.companyName">公司/自媒体名称：</span><span class="text-red-500">*</span>
+        </label>
+        <input type="text" id="company" name="f_25z6j9ms5rw" class="w-full border rounded p-2 text-sm" required>
+    </div>
+    <div>
+        <label for="specialtyArea" class="block mb-1 text-sm font-medium">
+            <span data-i18n="findClient.specialtyArea">擅长领域：</span><span class="text-red-500">*</span>
+        </label>
+        <div id="specialtyAreaDropdown" class="relative">
+            <div id="specialtyAreaDisplay" class="w-full border rounded p-2 text-sm cursor-pointer bg-white" data-i18n="findClient.pleaseSelectSpecialty">请选择擅长领域</div>
+            <div id="specialtyAreaOptions" class="hidden absolute z-10 w-full mt-1 bg-white border rounded shadow-lg max-h-60 overflow-y-auto">
+                <!-- 选项将通过 JavaScript 动态添加 -->
+            </div>
+        </div>
+        <input type="hidden" id="specialtyAreaInput" name="f_wqit90xkemb">
+    </div>
+    <div>
+        <label class="block mb-1 text-sm font-medium">
+            <span data-i18n="findClient.videoDurationLive">视频时长/直播：</span><span class="text-red-500">*</span>
+        </label>
+        <div class="space-x-4">
+            <label class="inline-flex items-center">
+                <input type="radio" name="f_87td2jqh959" value="30-60s" class="mr-2" required>
+                <span class="text-sm">30-60s</span>
+            </label>
+            <label class="inline-flex items-center">
+                <input type="radio" name="f_87td2jqh959" value="1min-3min" class="mr-2" required>
+                <span class="text-sm">1min-3min</span>
+            </label>
+            <label class="inline-flex items-center">
+                <input type="radio" name="f_87td2jqh959" value="3min-5min" class="mr-2" required>
+                <span class="text-sm">3min-5min</span>
+            </label>
+            <label class="inline-flex items-center">
+                <input type="radio" name="f_87td2jqh959" value="5min以上" class="mr-2" required>
+                <span class="text-sm" data-i18n="findClient.moreThan5Min">5min以上</span>
+            </label>
+            <label class="inline-flex items-center">
+                <input type="radio" name="f_87td2jqh959" value="直播" class="mr-2" required>
+                <span class="text-sm" data-i18n="findClient.live">直播</span>
+            </label>
+        </div>
+    </div>
+    <div>
+        <label for="requirements" class="block mb-1 text-sm font-medium">
+            <span data-i18n="findClient.specificRequirements">具体需求：</span><span class="text-red-500">*</span>
+        </label>
+        <textarea id="requirements" name="f_pirusecacs0" class="w-full border rounded p-2 text-sm" rows="6" maxlength="500" required data-i18n-placeholder="findClient.examplePlaceholder"></textarea>
+        <div class="text-right text-sm text-gray-500"><span id="charCount">0</span> / 500</div>
+    </div>
+    <div class="text-right">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm">提交</button>
+    </div>
+</form>
 			</div>
 		</div>
+		
 
 		<script type="module">
 			import { globalUrl, globalAuthorization } from './TK.js';
+			
 			const specialtyAreas = {
+  '新闻 (News)': ['时政 (Current Affairs)', '社会 (Society)'],
+  '娱乐 (Entertainment)': ['综艺 (Variety Show)', '明星 (Star)'],
+  '影视 (Film and Television)': ['电影 (Movie)', '短片 (Short Film)', '电视剧 (TV Series)', '纪录片 (Documentary)'],
+  '音乐 (Music)': ['MV (MV)', '音乐现场 (Music Live)', '乐器演奏 (Music Instrument Performance)', '音乐教学 (Music Teaching)', '达人翻唱 (Talent Cover)'],
+  '舞蹈 (Dance)': ['舞蹈教学 (Dance Teaching)', '舞蹈表演 (Dance Performance)'],
+  '游戏 (Game)': ['竞技游戏 (Competitive Game)', '休闲游戏 (Casual Game)', '桌游棋牌 (Board Game)', '角色扮演 (Role Playing Game)'],
+  '二次元 (ACG)': ['动画 (Animation)', '模玩手办 (Model Toy)', 'cosplay (Cosplay)'],
+  '美食 (Food)': ['美食探店 (Food Shop Search)', '美食教学 (Food Teaching)', '美食吃播 (Food Eating Broadcast)', '美食测评 (Food Evaluation)'],
+  '时尚 (Fashion)': ['美妆美发 (Cosmetics and Hair)', '护肤保养 (Skin Care)', '时尚穿搭 (Fashion Wear)', '潮流资讯 (Trend Information)', '时尚街拍 (Fashion Street Snap)'],
+  '生活 (Life)': ['生活妙招 (Life Tips)', '家居家装 (Home Decoration)', '生活情趣 (Life Interest)'],
+  '旅游 (Travel)': ['出行攻略 (Travel Guide)', '游玩探店 (Travel Shop Search)', '旅行日记 (Travel Diary)', '自然风光 (Natural Scenery)', '风土人情 (Local Customs)'],
+  '金融 (Finance)': ['股票 (Stock)', '基金 (Fund)', '保险 (Insurance)', '期货 (Futures)', '商业 (Business)', '房地产 (Real Estate)', '宏观经济 (Macro Economy)'],
+  '汽车 (Automobile)': ['试驾测评 (Test Drive Evaluation)', '改车玩车 (Car Modification)', '驾考交规 (Driving License Rules)', '汽车生活 (Car Life)', '汽车知识 (Car Knowledge)'],
+  '教育 (Education)': ['学前教育 (Preschool Education)', '学校教育 (School Education)', '职业教育 (Vocational Education)'],
+  '医疗健康 (Medical Health)': ['养生保健 (Health Care)', '疾病治疗 (Disease Treatment)', '母婴健康 (Maternal and Infant Health)', '医美整形 (Medical Cosmetology)'],
+  '科技 (Technology)': ['电子数码 (Electronic Digital)', '软件应用 (Software Application)', '智慧生活 (Smart Life)', '工程机械 (Engineering Machinery)', '互联网+ (Internet Plus)', '科技综合 (Technology Comprehensive)']
+};
+			/* const specialtyAreas = {
 				'新闻': ['时政', '社会'],
 				'娱乐': ['综艺', '明星'],
 				'影视': ['电影', '短片', '电视剧', '纪录片'],
@@ -132,7 +163,62 @@
 				'教育': ['学前教育', '学校教育', '职业教育'],
 				'医疗健康': ['养生保健', '疾病治疗', '母婴健康', '医美整形'],
 				'科技': ['电子数码', '软件应用', '智慧生活', '工程机械', '互联网+', '科技综合']
-			};
+			}; */
+// const specialtyAreas = {
+//   [i18n.translate('findClient.news')]: [i18n.translate('findClient.currentAffairs'), i18n.translate('findClient.society')],
+//   [i18n.translate('findClient.entertainment')]: [i18n.translate('findClient.varietyShow'), i18n.translate('findClient.star')],
+//   [i18n.translate('findClient.filmAndTelevision')]: [i18n.translate('findClient.movie'), i18n.translate('findClient.shortFilm'), i18n.translate('findClient.tvSeries'), i18n.translate('findClient.documentary')],
+//   [i18n.translate('findClient.music')]: [i18n.translate('findClient.mv'), i18n.translate('findClient.musicLive'), i18n.translate('findClient.musicInstrumentPerformance'), i18n.translate('findClient.musicTeaching'), i18n.translate('findClient.talentCover')],
+//   [i18n.translate('findClient.dance')]: [i18n.translate('findClient.danceTeaching'), i18n.translate('findClient.dancePerformance')],
+//   [i18n.translate('findClient.game')]: [i18n.translate('findClient.competitiveGame'), i18n.translate('findClient.casualGame'), i18n.translate('findClient.boardGame'), i18n.translate('findClient.rolePlayingGame')],
+//   [i18n.translate('findClient.acg')]: [i18n.translate('findClient.animation'), i18n.translate('findClient.modelToy'), i18n.translate('findClient.cosplay')],
+//   [i18n.translate('findClient.food')]: [i18n.translate('findClient.foodShopSearch'), i18n.translate('findClient.foodTeaching'), i18n.translate('findClient.foodEatingBroadcast'), i18n.translate('findClient.foodEvaluation')],
+//   [i18n.translate('findClient.fashion')]: [i18n.translate('findClient.cosmeticsAndHair'), i18n.translate('findClient.skinCare'), i18n.translate('findClient.fashionWear'), i18n.translate('findClient.trendInformation'), i18n.translate('findClient.fashionStreetSnap')],
+//   [i18n.translate('findClient.life')]: [i18n.translate('findClient.lifeTips'), i18n.translate('findClient.homeDecoration'), i18n.translate('findClient.lifeInterest')],
+//   [i18n.translate('findClient.travel')]: [i18n.translate('findClient.travelGuide'), i18n.translate('findClient.travelShopSearch'), i18n.translate('findClient.travelDiary'), i18n.translate('findClient.naturalScenery'), i18n.translate('findClient.localCustoms')],
+//   [i18n.translate('findClient.finance')]: [i18n.translate('findClient.stock'), i18n.translate('findClient.fund'), i18n.translate('findClient.insurance'), i18n.translate('findClient.futures'), i18n.translate('findClient.business'), i18n.translate('findClient.realEstate'), i18n.translate('findClient.macroEconomy')],
+//   [i18n.translate('findClient.automobile')]: [i18n.translate('findClient.testDriveEvaluation'), i18n.translate('findClient.carModification'), i18n.translate('findClient.drivingLicenseRules'), i18n.translate('findClient.carLife'), i18n.translate('findClient.carKnowledge')],
+//   [i18n.translate('findClient.education')]: [i18n.translate('findClient.preschoolEducation'), i18n.translate('findClient.schoolEducation'), i18n.translate('findClient.vocationalEducation')],
+//   [i18n.translate('findClient.medicalHealth')]: [i18n.translate('findClient.healthCare'), i18n.translate('findClient.diseaseTreatment'), i18n.translate('findClient.maternalAndInfantHealth'), i18n.translate('findClient.medicalCosmetology')],
+//   [i18n.translate('findClient.technology')]: [i18n.translate('findClient.electronicDigital'), i18n.translate('findClient.softwareApplication'), i18n.translate('findClient.smartLife'), i18n.translate('findClient.engineeringMachinery'), i18n.translate('findClient.internetPlus'), i18n.translate('findClient.technologyComprehensive')]
+// };
+
+
+/* const specialtyAreas = {
+  'findClient.news': ['findClient.currentAffairs', 'findClient.society'],
+  'findClient.entertainment': ['findClient.varietyShow', 'findClient.star'],
+  'findClient.filmAndTelevision': ['findClient.movie', 'findClient.shortFilm', 'findClient.tvSeries', 'findClient.documentary'],
+  'findClient.music': ['findClient.mv', 'findClient.musicLive', 'findClient.musicInstrumentPerformance', 'findClient.musicTeaching', 'findClient.talentCover'],
+  'findClient.dance': ['findClient.danceTeaching', 'findClient.dancePerformance'],
+  'findClient.game': ['findClient.competitiveGame', 'findClient.casualGame', 'findClient.boardGame', 'findClient.rolePlayingGame'],
+  'findClient.acg': ['findClient.animation', 'findClient.modelToy', 'findClient.cosplay'],
+  'findClient.food': ['findClient.foodShopSearch', 'findClient.foodTeaching', 'findClient.foodEatingBroadcast', 'findClient.foodEvaluation'],
+  'findClient.fashion': ['findClient.cosmeticsAndHair', 'findClient.skinCare', 'findClient.fashionWear', 'findClient.trendInformation', 'findClient.fashionStreetSnap'],
+  'findClient.life': ['findClient.lifeTips', 'findClient.homeDecoration', 'findClient.lifeInterest'],
+  'findClient.travel': ['findClient.travelGuide', 'findClient.travelShopSearch', 'findClient.travelDiary', 'findClient.naturalScenery', 'findClient.localCustoms'],
+  'findClient.finance': ['findClient.stock', 'findClient.fund', 'findClient.insurance', 'findClient.futures', 'findClient.business', 'findClient.realEstate', 'findClient.macroEconomy'],
+  'findClient.automobile': ['findClient.testDriveEvaluation', 'findClient.carModification', 'findClient.drivingLicenseRules', 'findClient.carLife', 'findClient.carKnowledge'],
+  'findClient.education': ['findClient.preschoolEducation', 'findClient.schoolEducation', 'findClient.vocationalEducation'],
+  'findClient.medicalHealth': ['findClient.healthCare', 'findClient.diseaseTreatment', 'findClient.maternalAndInfantHealth', 'findClient.medicalCosmetology'],
+  'findClient.technology': ['findClient.electronicDigital', 'findClient.softwareApplication', 'findClient.smartLife', 'findClient.engineeringMachinery', 'findClient.internetPlus', 'findClient.technologyComprehensive']
+}; */
+
+// const translatedSpecialtyAreas = {};
+// 
+// for (const key in specialtyAreas) {
+//   const translatedKey = i18n.translate(key);
+//   const values = specialtyAreas[key];
+//   const translatedValues = values.map(value => i18n.translate(value));
+// 
+//   // 检查翻译后的键和值是否为空，如果为空则使用原始的键和值
+//   if (translatedKey) {
+//     translatedSpecialtyAreas[translatedKey] = translatedValues.filter(v => v);
+//   } else {
+//     translatedSpecialtyAreas[key] = values;
+//   }
+// }
+// 
+// console.log(translatedSpecialtyAreas);
 
 			const specialtyAreaDisplay = document.getElementById('specialtyAreaDisplay');
 			const specialtyAreaOptions = document.getElementById('specialtyAreaOptions');
@@ -144,6 +230,7 @@
 				const mainOption = document.createElement('div');
 				mainOption.className = 'p-2 font-bold';
 				mainOption.textContent = mainArea;
+				// mainOption.setAttribute('data-i18n', mainArea);
 				specialtyAreaOptions.appendChild(mainOption);
 
 				subAreas.forEach(subArea => {
@@ -213,14 +300,15 @@
   }
 })
 .then(response => {
-  alert('提交成功！稍后工作人员将会与您联系~');
+  alert('提交成功！稍后工作人员将会与您联系~\nThe translation was submitted successfully! A staff member will contact you shortly.');
   console.log(response.data);
 })
 .catch(error => {
-  alert('提交失败，请重试。');
+  alert('提交失败，请稍后重试。\nSubmission failed. Please retry later.');
   console.error('Error:', error);
 });
 			});
+			
 		</script>
 		<script src="com.js"></script>
 	</body>

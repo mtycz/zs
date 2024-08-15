@@ -43,3 +43,40 @@ window.addEventListener('scroll', function() {
 
 })
 
+
+
+function toggleLanguage() {
+	
+  const currentLanguage = document.getElementById('languageButtonText').getAttribute('data-i18n');
+  const currentLanguageMobile = document.getElementById('languageButtonTextMobile').getAttribute('data-i18n');
+
+  let newLanguage;
+  if (currentLanguage === 'common.switchToEnglish' || currentLanguageMobile === 'common.switchToEnglish') {
+    i18n.setLanguage('en');
+    newLanguage = 'en';
+    document.getElementById('languageButtonText').setAttribute('data-i18n', 'common.switchToChinese');
+    document.getElementById('languageButtonTextMobile').setAttribute('data-i18n', 'common.switchToChinese');
+  } else {
+    i18n.setLanguage('zh');
+    newLanguage = 'zh';
+    document.getElementById('languageButtonText').setAttribute('data-i18n', 'common.switchToEnglish');
+    document.getElementById('languageButtonTextMobile').setAttribute('data-i18n', 'common.switchToEnglish');
+  }
+
+  // 将语言设置存储到 Cookie 中，有效期为 30 天
+  document.cookie = `language=${newLanguage}; max-age=2592000; path=/`;
+	// 刷新页面
+  location.reload();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const languageFromCookie = getCookie('language');
+    const languageButtonText = document.getElementById('languageButtonText');
+    const languageButtonTextMobile = document.getElementById('languageButtonTextMobile');
+
+    languageButtonText.setAttribute('data-i18n', languageFromCookie === 'zh'? 'common.switchToEnglish' : 'common.switchToChinese');
+    languageButtonText.textContent = languageFromCookie === 'zh'? 'English' : '中文';
+
+    languageButtonTextMobile.setAttribute('data-i18n', languageFromCookie === 'zh'? 'common.switchToEnglish' : 'common.switchToChinese');
+    languageButtonTextMobile.textContent = languageFromCookie === 'zh'? 'English' : '中文';
+  });

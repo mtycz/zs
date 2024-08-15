@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>订单列表</title>
-		<link rel="stylesheet" type="text/css" href="com.css" />
-		<script src="https://cdn.tailwindcss.com"></script>
-		<style type="text/tailwindcss">
-			.filter-option {
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title data-i18n="orderListing.title">订单列表</title>
+	<link rel="stylesheet" type="text/css" href="com.css" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="./i18n.js"></script>
+	<style type="text/tailwindcss">
+		.filter-option {
 				@apply px-3 py-1 rounded-full text-sm cursor-pointer transition-colors duration-200;
 			 }
 			 .filter-option:hover, .filter-option.active {
@@ -25,380 +27,497 @@
 		
 		</style>
 
-	</head>
-	<body class="bg-gray-100">
-		<script>
-			async function loadHeader() {
-		  try {
-		    const response = await fetch('header.html');
-		    if (response.ok) {
-		      const content = await response.text();
-		      const div = document.createElement('div');
-		      div.innerHTML = content;
-		      document.body.insertBefore(div, document.body.firstChild);
-		
+</head>
 
-		    } else {
-		      console.error('Failed to load header');
-		    }
-		  } catch (error) {
-		    console.error('Error loading header:', error);
-		  }
+<body class="bg-gray-100">
+	<!-- <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script> -->
+
+	<script>
+
+		async function loadHeader() {
+			try {
+				const response = await fetch('header.html');
+				if (response.ok) {
+					const content = await response.text();
+					const div = document.createElement('div');
+					div.innerHTML = content;
+					document.body.insertBefore(div, document.body.firstChild);
+
+
+				} else {
+					console.error('Failed to load header');
+				}
+			} catch (error) {
+				console.error('Error loading header:', error);
+			}
 		}
-		    loadHeader();
-			
-		      
-		
-		  </script>
+		loadHeader();
 
-		<div class="container mx-auto px-4 py-16" role="main">
-			<div class="bg-white shadow rounded-lg p-4 mb-6">
-				<h3 class="font-bold mb-2">订单类型</h3>
-				<div class="flex flex-wrap gap-4 mb-4" id="orderTypeFilter">
 
-					<button class="filter-option active" data-value="">全部</button>
-					<!-- 订单类型选项将在这里动态生成 -->
-				</div>
-				<div id="expandedFilters" class="hidden mt-4">
-					<div class="mb-4">
-						<h3 class="font-bold mb-2">内容分类</h3>
-						<div class="flex flex-wrap gap-2" id="contentCategoryFilter">
-							<!-- 内容分类选项将在这里动态生成 -->
-						</div>
-					</div>
-					<div>
-						<h3 class="font-bold mb-2">价格范围</h3>
-						<div class="flex flex-wrap gap-2" id="priceRangeFilter">
-							<span class="filter-option active" data-value="">全部</span>
-							<span class="filter-option" data-value="0-10000">1万以下</span>
-							<span class="filter-option" data-value="10000-50000">1-5万</span>
-							<span class="filter-option" data-value="50000-100000">5-10万</span>
-							<span class="filter-option" data-value="100000-200000">10-20万</span>
-							<span class="filter-option" data-value="200000-">20万以上</span>
-						</div>
+
+	</script>
+
+	<div class="container mx-auto px-4 py-16" role="main">
+		<div class="bg-white shadow rounded-lg p-4 mb-6">
+			<h3 class="font-bold mb-2" data-i18n="orderListing.orderType">订单类型</h3>
+			<div class="flex flex-wrap gap-4 mb-4" id="orderTypeFilter">
+
+				<button class="filter-option active" data-value="" data-i18n="orderListing.all">全部</button>
+				<!-- 订单类型选项将在这里动态生成 -->
+			</div>
+			<div id="expandedFilters" class="hidden mt-4">
+				<div class="mb-4">
+					<h3 class="font-bold mb-2" data-i18n="orderListing.contentCategory">内容分类</h3>
+					<div class="flex flex-wrap gap-2" id="contentCategoryFilter">
+						<span class="filter-option active" data-value="" data-i18n="orderListing.all">全部</span>
+						<!-- 内容分类选项将在这里动态生成 -->
 					</div>
 				</div>
-				<button id="expandFilters" class="text-blue-500 mt-4">更多筛选 ▼</button>
+				<div>
+					<h3 class="font-bold mb-2" data-i18n="orderListing.priceRange">价格范围</h3>
+					<div class="flex flex-wrap gap-2" id="priceRangeFilter">
+						<span class="filter-option active" data-value="" data-i18n="orderListing.all">全部</span>
+						<span class="filter-option" data-value="0-10000" data-i18n="orderListing.below10k">1万以下</span>
+						<span class="filter-option" data-value="10000-50000"
+							data-i18n="orderListing.10kTo50k">1-5万</span>
+						<span class="filter-option" data-value="50000-100000"
+							data-i18n="orderListing.50kTo100k">5-10万</span>
+						<span class="filter-option" data-value="100000-200000"
+							data-i18n="orderListing.100kTo200k">10-20万</span>
+						<span class="filter-option" data-value="200000-" data-i18n="orderListing.above200k">20万以上</span>
+					</div>
+				</div>
 			</div>
-
-			<div class="mb-4 relative">
-				<span class="absolute inset-y-0 left-0 flex items-center pl-3">
-					<svg class="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<circle cx="11" cy="11" r="8" />
-						<line x1="21" y1="21" x2="16.65" y2="16.65" />
-					</svg>
-				</span>
-				<input type="text" id="searchInput" placeholder="搜索订单标题" class="w-full p-2 border rounded-lg pl-10">
-			</div>
-			<div id="orderList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-				<!-- 订单卡片将在这里动态生成 -->
-			</div>
+			<button id="expandFilters" class="text-blue-500 mt-4" data-i18n="orderListing.moreFilters">更多筛选 ▼</button>
 		</div>
 
-		<script type="module">
-			// Replace the mock API data with a function to fetch real data
-
-
-						 import { globalUrl, globalAuthorization } from './TK.js';
-
-						// Replace the mock API data with a function to fetch real data
-						async function fetchOrders() {
-							const response = await fetch(`${globalUrl}/api/Order:list?pageSize=200&filter=%7B%22f_pxc7nh2j1l1%22%3A%227fozvo26oqm%22%7D&sort=-id`, {
-								headers: {
-									'accept': 'application/json',
-									'Authorization': globalAuthorization
-								}
-							});
-							return await response.json();
-						}
-			        // Update the orderTypeMap and contentCategoryMap if necessary
-			        const orderTypeMap = {
-			            'd2uc4mj4fxf': '账号入驻',
-			            'ifktrdyaug0': '新视频制作',
-			            'ue583ornr9o': '库存视频采购',
-			            'va02uanp899': '账号代运营',
-			            'nw3ju20g0s7': '图文走制',
-			            'zfqc4ly9hf7': '图文采购',
-			            'tneuzv2xjw6': '活动邀约',
-						'j2lx6ylfypl': '直播代运营'
-			        };
-			
-			        const contentCategoryMap = {
-			            'gv8uoafrh9z': '金融',
-			            'puapewv5xw6': '汽车',
-			            'u8f31ra4khm': '影视',
-			            'rObwdmagdhk': '音乐',
-			            'c4jzw2xpezf': '舞蹈',
-			            'lfltfd9xcs0': '教育',
-			            'ymgk2xo9tzy': '搞笑',
-			            'vcfymafn40m': '综合',
-			            'e67a087esqm': '科技',
-			            'xh36howtrkf': '医疗健康',
-			            'c2g85w9uoyo': '生活',
-			            'eqgqv4zxs6a': '时尚',
-			            'eifxu2p3mzw': '美食',
-			            'te5b043gdi7': '二次元',
-			            'h4ccldggihj': '游戏',
-			            '50tjdj5ncrs': '旅游',
-			            'eolalp1212h': '动画',
-			            'e4nufmlxioe': '民生',
-			            'j3uw7uyuxi': '育儿',
-			            'gehyh5k093p': '健身',
-			            '5fk2a0t6h7k': '科普',
-			            '306ik8jfo3y': '美女',
-			            'lwiav43illb': '职场',
-			            'jwfzm43lwyo': '户外',
-			            'ljycnhza8e2': '三农',
-			            '5km2ailvhny': '情感',
-			            'p2qvosotu0y': '萌宠',
-			            'waz8j4tixfo': '摄影'
-			        };
-			
-			function renderOrderList(orders) {
-			    const orderList = document.getElementById('orderList');
-			    orderList.innerHTML = '';
-			
-			    if (orders.length === 0) {
-			        orderList.innerHTML = '<p class="col-span-full text-center text-gray-500">暂时还没有订单，稍后试试吧~</p>';
-			        return;
-			    }
-			
-			    orders.forEach(order => {
-			        const card = document.createElement('div');
-			        card.className = 'bg-white shadow rounded-lg p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300 flex flex-col h-full';
-			        card.onclick = () => window.location.href = `order-details-page.html?currentOrderId=${order.id}`;
-			        
-			        let topContent = '';
-			        if (order.f_s0a4gk3seo8 === '4uvhvy51ipv') {
-			            topContent = `<span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">找甲方</span>`;
-			        }
-			        if (order.f_s0a4gk3seo8 === 'ozh4tug13t9') {
-			            topContent = `<span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-0.5 rounded">找已方</span>`;
-			        }
-			
-			        const participationRate = order.f_va22tnijq3d && order.f_0javxizhm56
-			            ? `已参与 ${order.f_va22tnijq3d}/${order.f_0javxizhm56}`
-			            : '虚以待位';
-			
-			        card.innerHTML = `
-			            <div class="flex-grow">
-			                <div class="flex justify-between items-start mb-2">
-			                    <span class="text-xs text-gray-500"><p>${orderTypeMap[order.f_32jflifocbc] || '未知'}</p><p>${contentCategoryMap[order.f_keedm2xu11w] || '未知'}</p></span>
-			                    ${topContent}
-			                </div>
-			                <h3 class="font-bold mb-2">${order.f_0umtpxkakrb || '无标题'}</h3>
-			                <div class="h-18 overflow-hidden text-sm text-gray-600 mb-2">
-			                    ${order.f_gs4grbpayfb ? order.f_gs4grbpayfb.substring(0, 100) + (order.f_gs4grbpayfb.length > 100 ? '...' : '') : ''}
-			                </div>
-			                ${order.f_omokutprq36 === 'iv8f7cwj02j' && order.f_kalomvbbbxa ? `<div class="flex justify-between items-center mt-auto"><span class="mb-2 text-left text-sm font-bold text-red-500">￥${order.f_kalomvbbbxa} | ${order.f_0javxizhm56 || '-'}个</span><span class="mb-2 text-right text-sm font-bold text-red-500">单价￥${(order.f_kalomvbbbxa / order.f_0javxizhm56 ).toFixed(2)}</span></div>` : '<div class="flex justify-between items-center mt-auto"><span class="mb-2 text-left text-sm font-bold text-green-500">报名询价</span></div>'}
-			            </div>
-			            <div class="flex justify-between items-center mt-auto">
-			                <span class="text-xs text-gray-500">${participationRate}</span>
-			                <button class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold py-1 px-3 rounded">查看详情</button>
-			            </div>
-			        `;
-			
-			        orderList.appendChild(card);
-			    });
-			}
-			
-								function initializeFilters() {
-										const orderTypeFilter = document.getElementById('orderTypeFilter');
-										const contentCategoryFilter = document.getElementById('contentCategoryFilter');
-			
-										// 添加订单类型选项
-										for (const [value, label] of Object.entries(orderTypeMap)) {
-												const button = document.createElement('button');
-												button.textContent = label;
-												button.className = 'filter-option';
-												button.dataset.value = value;
-												orderTypeFilter.appendChild(button);
-										}
-			
-										// 添加内容分类选项
-										const allContentCategory = document.createElement('span');
-										allContentCategory.textContent = '全部';
-										allContentCategory.className = 'filter-option active';
-										allContentCategory.dataset.value = '';
-										contentCategoryFilter.appendChild(allContentCategory);
-			
-										for (const [value, label] of Object.entries(contentCategoryMap)) {
-												const span = document.createElement('span');
-												span.textContent = label;
-												span.className = 'filter-option';
-												span.dataset.value = value;
-												contentCategoryFilter.appendChild(span);
-										}
-								}
-			
-								 async function initializePage() {
-			            initializeFilters();
-			            try {
-			                const apiData = await fetchOrders();
-			                renderOrderList(apiData.data);
-			            } catch (error) {
-			                console.error('Error fetching orders:', error);
-			                document.getElementById('orderList').innerHTML = '<p class="col-span-full text-center text-red-500">加载订单时出错，请稍后再试。</p>';
-			            }
-			        }
-			
-			        // Call initializePage instead of directly calling renderOrderList
-			        initializePage();
-			
-			        // Update the filterOrders function to use the new API
-			        async function filterOrders() {
-			            let contentCategory, priceRange, orderType;
-			            const orderTypes = Array.from(document.querySelector('#orderTypeFilter').children);
-			            orderTypes.map(item => {
-			                if (item.classList.contains('filter-active')) {
-			                    orderType = item.dataset.value;
-			                }
-			            });
-			            const contentCategorys = Array.from(document.querySelector('#contentCategoryFilter').children);
-			            contentCategorys.map(item => {
-			                if (item.classList.contains('active')) {
-			                    contentCategory = item.dataset.value;
-			                }
-			            });
-			            const priceRanges = Array.from(document.querySelector('#priceRangeFilter').children);
-			            priceRanges.map(item => {
-			                if (item.classList.contains('active')) {
-			                    priceRange = item.dataset.value;
-			                }
-			            });
-			            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-			
-			            try {
-			                const apiData = await fetchOrders();
-			                const filteredOrders = apiData.data.filter(order => {
-			                    if (orderType && order.f_32jflifocbc !== orderType) return false;
-			                    if (contentCategory && order.f_keedm2xu11w !== contentCategory) return false;
-			                    if (priceRange) {
-			                        const [min, max] = priceRange.split('-').map(Number);
-			                        if (!order.f_kalomvbbbxa || order.f_kalomvbbbxa < min || (max && order.f_kalomvbbbxa > max)) return false;
-			                    }
-			                    if (searchTerm && (!order.f_0umtpxkakrb || !order.f_0umtpxkakrb.toLowerCase().includes(searchTerm))) return false;
-			                    return true;
-			                });
-			
-			                renderOrderList(filteredOrders);
-			            } catch (error) {
-			                console.error('Error filtering orders:', error);
-			                document.getElementById('orderList').innerHTML = '<p class="col-span-full text-center text-red-500">筛选订单时出错，请稍后再试。</p>';
-			            }
-			        }
-			
-								
-			
-								// 展开/收起筛选
-								document.getElementById('expandFilters').addEventListener('click', function() {
-										const expandedFilters = document.getElementById('expandedFilters');
-										expandedFilters.classList.toggle('hidden');
-										this.textContent = expandedFilters.classList.contains('hidden') ? '更多筛选 ▼' : '收起筛选 ▲';
-								});
-			
-								// 添加筛选事件监听器
-								document.querySelectorAll('.filter-option').forEach(option => {
-										option.addEventListener('click', function() {
-												const parent = this.parentElement;
-												parent.querySelector('.active')?.classList.remove('active');
-												this.classList.add('active');
-												filterOrders();
-										});
-								});
-			
-								// 订单类型筛选特殊处理
-								document.querySelectorAll('#orderTypeFilter button').forEach(button => {
-										button.addEventListener('click', function() {
-												document.querySelector('#orderTypeFilter .filter-active')?.classList.remove('filter-active');
-												this.classList.add('filter-active');
-												filterOrders();
-										});
-								});
-			
-								// 搜索功能
-								document.getElementById('searchInput').addEventListener('input', filterOrders);
-		</script>
-
-		<!-- 添加固定位置的卡片 -->
-		<div class="fixed bottom-4 right-4 space-y-3 z-50">
-			<!-- 悬浮按钮 -->
-			<button id="toggleButton" class="bg-white rounded-full shadow-lg p-4 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center justify-center w-16 h-16">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+		<div class="mb-4 relative">
+			<span class="absolute inset-y-0 left-0 flex items-center pl-3">
+				<svg class="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<circle cx="11" cy="11" r="8" />
+					<line x1="21" y1="21" x2="16.65" y2="16.65" />
 				</svg>
-			</button>
+			</span>
+			<input type="text" id="searchInput" placeholder="搜索订单标题" class="w-full p-2 border rounded-lg pl-10"
+				data-i18n="orderListing.searchOrderTitle">
+		</div>
+		<div id="orderList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+			<!-- 订单卡片将在这里动态生成 -->
+		</div>
+	</div>
+
+<div id="loadingHint" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-amber-400 text-white p-4 rounded-md shadow-md hidden">
+    <div class="flex items-center">
+      <div class="loading-spinner"></div>
+      <span>加载中 Loading...</span>
+    </div>
+  </div>
+
+<div id="loadingError" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 text-center text-white p-4 rounded-md shadow-md hidden">
+    <div class="flex items-center">
+      <div class="loading-spinner"></div>
+      <span>出了点问题，换个条件重试一下~<br>Something went wrong. Please try again with different conditions.</span>
+    </div>
+  </div>
 
 
-			<!-- 找客户卡片 -->
-			<div id="customerCard" class=" bg-white rounded-xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center space-x-4 w-64  group hidden " onclick="window.location.href='find-client-form.html'">
-				<div class="flex-grow">
-					<p class="font-semibold text-lg text-gray-800 group-hover:text-blue-600 transition-colors duration-300">我要找客户</p>
-					<p class="text-sm text-blue-600 group-hover:text-blue-400 transition-colors duration-300">寻找甲方 &gt;&gt;&gt;</p>
-				</div>
-				<div class="bg-blue-100 p-3 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
-					<!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 group-hover:text-blue-600 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+	<script type="module">
+		// Replace the mock API data with a function to fetch real data
+
+
+		import { globalUrl, globalAuthorization } from './TK.js';
+
+		// Replace the mock API data with a function to fetch real data
+		async function fetchOrders() {
+
+			const response = await fetch(`${globalUrl}/api/Order:list?pageSize=200&filter=%7B%22f_pxc7nh2j1l1%22%3A%227fozvo26oqm%22%7D&sort=-id`, {
+				headers: {
+					'accept': 'application/json',
+					'Authorization': globalAuthorization
+				}
+
+			});
+			return await response.json();
+		}
+
+		function loadHtml() {
+			const orderTypeMap = {
+				'd2uc4mj4fxf': i18n.translate('orderListing.accountSettlement'),
+				'ifktrdyaug0': i18n.translate('orderListing.newVideoProduction'),
+				'ue583ornr9o': i18n.translate('orderListing.stockVideoPurchase'),
+				'va02uanp899': i18n.translate('orderListing.accountProxyOperation'),
+				'nw3ju20g0s7': i18n.translate('orderListing.graphicTextProduction'),
+				'zfqc4ly9hf7': i18n.translate('orderListing.graphicTextPurchase'),
+				'tneuzv2xjw6': i18n.translate('orderListing.eventInvitation'),
+				'j2lx6ylfypl': i18n.translate('orderListing.liveStreamProxyOperation')
+			};
+
+			const contentCategoryMap = {
+				'gv8uoafrh9z': i18n.translate('orderListing.finance'),
+				'puapewv5xw6': i18n.translate('orderListing.automobile'),
+				'u8f31ra4khm': i18n.translate('orderListing.filmAndTelevision'),
+				'rObwdmagdhk': i18n.translate('orderListing.music'),
+				'c4jzw2xpezf': i18n.translate('orderListing.dance'),
+				'lfltfd9xcs0': i18n.translate('orderListing.education'),
+				'ymgk2xo9tzy': i18n.translate('orderListing.funny'),
+				'vcfymafn40m': i18n.translate('orderListing.comprehensive'),
+				'e67a087esqm': i18n.translate('orderListing.technology'),
+				'xh36howtrkf': i18n.translate('orderListing.medicalHealth'),
+				'c2g85w9uoyo': i18n.translate('orderListing.life'),
+				'eqgqv4zxs6a': i18n.translate('orderListing.fashion'),
+				'eifxu2p3mzw': i18n.translate('orderListing.food'),
+				'te5b043gdi7': i18n.translate('orderListing.acg'),
+				'h4ccldggihj': i18n.translate('orderListing.game'),
+				'50tjdj5ncrs': i18n.translate('orderListing.travel'),
+				'eolalp1212h': i18n.translate('orderListing.animation'),
+				'e4nufmlxioe': i18n.translate('orderListing.peopleLivelihood'),
+				'j3uw7uyuxi': i18n.translate('orderListing.parenting'),
+				'gehyh5k093p': i18n.translate('orderListing.fitness'),
+				'5fk2a0t6h7k': i18n.translate('orderListing.popularScience'),
+				'306ik8jfo3y': i18n.translate('orderListing.beauty'),
+				'lwiav43illb': i18n.translate('orderListing.workplace'),
+				'jwfzm43lwyo': i18n.translate('orderListing.outdoor'),
+				'ljycnhza8e2': i18n.translate('orderListing.agricultureRuralAreaAndFarmers'),
+				'5km2ailvhny': i18n.translate('orderListing.emotion'),
+				'p2qvosotu0y': i18n.translate('orderListing.cutePet'),
+				'waz8j4tixfo': i18n.translate('orderListing.photography')
+			};
+
+
+
+			function renderOrderList(orders) {
+
+      loadingHint.classList.remove('hidden'); // 显示加载提示
+			setTimeout(() => {
+											loadingHint.classList.add('hidden'); // 0.5 秒后隐藏加载提示
+									}, 2000);
+				
+				const orderList = document.getElementById('orderList');
+				orderList.innerHTML = '';
+
+				if (orders.length === 0) {
+					orderList.innerHTML = `<p class="col-span-full text-center text-gray-500">${i18n.translate('orderListing.noOrderMessage')}</p>`;
+					return;
+				}
+
+				while (orderList.firstChild) {
+					orderList.removeChild(orderList.firstChild)
+				}
+				orders.forEach(order => {		 
+					const card = document.createElement('div');
+					card.className = 'bg-white shadow rounded-lg p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300 flex flex-col h-full';
+					card.onclick = () => window.location.href = `order-details-page.html?currentOrderId=${order.id}`;
+
+					let topContent = '';
+					if (order.f_s0a4gk3seo8 === '4uvhvy51ipv') {
+						topContent = `<span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">${i18n.translate('orderListing.lookForPartyA')}</span>`;
+					}
+					if (order.f_s0a4gk3seo8 === 'ozh4tug13t9') {
+						topContent = `<span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-0.5 rounded">${i18n.translate('orderListing.lookForPartyB')}</span>`;
+					}
+					const participationRate = order.f_va22tnijq3d && order.f_0javxizhm56
+						? `${i18n.translate('orderListing.participated')} ${order.f_va22tnijq3d}/${order.f_0javxizhm56}`
+						: `${i18n.translate('orderListing.emptyAndAwaiting')}`;
+					card.innerHTML = `
+    <div class="flex-grow">
+        <div class="flex justify-between items-start mb-2" data-value="${order.f_32jflifocbc}">
+            <span class="text-xs text-gray-500"><p>${i18n.translate(orderTypeMap[order.f_32jflifocbc]) || '未知'}</p><p data-value="f_keedm2xu11w">${i18n.translate(contentCategoryMap[order.f_keedm2xu11w]) || '未知'}</p></span>
+            ${topContent}
+        </div>
+        <h3 class="font-bold mb-2">${order.f_0umtpxkakrb || '无标题'}</h3>
+        <div class="h-18 overflow-hidden text-sm text-gray-600 mb-2">
+            ${order.f_gs4grbpayfb ? order.f_gs4grbpayfb.substring(0, 100) + (order.f_gs4grbpayfb.length > 100 ? '...' : '') : ''}
+        </div>
+        ${order.f_omokutprq36 === 'iv8f7cwj02j' && order.f_kalomvbbbxa ? `<div class="flex justify-between items-center mt-auto"><span class="mb-2 text-left text-sm font-bold text-red-500">${i18n.translate('orderListing.totalPrice')} ￥ ${order.f_kalomvbbbxa} | ${order.f_0javxizhm56 || '-'} ${i18n.translate('orderListing.piece')}</span><span class="mb-2 text-right text-sm font-bold text-red-500">${i18n.translate('orderListing.unitPrice')} ￥ ${(order.f_kalomvbbbxa / order.f_0javxizhm56).toFixed(2)}</span></div>` : `<div class="flex justify-between items-center mt-auto"><span class="mb-2 text-left text-sm font-bold text-green-500">${i18n.translate('orderListing.registerForInquiry')}</span></div>`}
+    </div>
+
+    <div class="flex justify-between items-center mt-auto">
+        <span class="text-xs text-gray-500">${participationRate}</span>
+        <button class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold py-1 px-3 rounded">${i18n.translate('orderListing.checkDetails')}</button>
+    </div>
+`;
+
+		
+					orderList.appendChild(card);
+				});
+			}
+
+
+			function initializeFilters() {
+
+				const orderTypeFilter = document.getElementById('orderTypeFilter');
+				const contentCategoryFilter = document.getElementById('contentCategoryFilter');
+				while (orderTypeFilter.firstChild) {
+					orderTypeFilter.removeChild(orderTypeFilter.firstChild)
+				}
+				const allType = document.createElement('button');
+				allType.textContent = i18n.translate('orderListing.all');
+				allType.className = 'filter-option active';
+				allType.dataset.value = '';
+				orderTypeFilter.appendChild(allType);
+				// 添加订单类型选项
+				for (const [value, label] of Object.entries(orderTypeMap)) {
+					const button = document.createElement('button');
+					button.textContent = label;
+					button.className = 'filter-option';
+					button.dataset.value = value;
+					orderTypeFilter.appendChild(button);
+				}
+
+				// 添加内容分类选项
+				const allContentCategory = document.createElement('span');
+				while (contentCategoryFilter.firstChild) {
+					contentCategoryFilter.removeChild(contentCategoryFilter.firstChild)
+				}
+				allContentCategory.textContent = i18n.translate('orderListing.all');
+				allContentCategory.className = 'filter-option active';
+				allContentCategory.dataset.value = '';
+				contentCategoryFilter.appendChild(allContentCategory);
+				for (const [value, label] of Object.entries(contentCategoryMap)) {
+					const span = document.createElement('span');
+					span.textContent = label;
+					span.className = 'filter-option';
+					span.dataset.value = value;
+					contentCategoryFilter.appendChild(span);
+				}
+				FilterSelect()
+
+			}
+
+			async function initializePage() {
+				initializeFilters();
+				try {
+					const apiData = await fetchOrders();
+					renderOrderList(apiData.data);
+				} catch (error) {
+					console.error('Error fetching orders:', error);
+					document.getElementById('orderList').innerHTML = `<p class="col-span-full text-center text-red-500">${i18n.translate('orderListing.loadOrderError')}</p>`;
+				}
+			}
+
+			return { initializePage, initializeFilters, renderOrderList, orderTypeMap, contentCategoryMap }
+		}
+
+		let { initializePage, initializeFilters, renderOrderList, orderTypeMap, contentCategoryMap } = loadHtml()
+		// Replace the mock API data with a function to fetch real data
+	
+		// Update the orderTypeMap and contentCategoryMap if necessary
+		document.addEventListener('translationsLoaded', () => {
+			let data = loadHtml()
+			let { initializePage, initializeFilters, renderOrderList, orderTypeMap, contentCategoryMap } = data
+			// Call initializePage instead of directly calling renderOrderList
+			initializePage();
+		});
+		// Update the filterOrders function to use the new API
+		async function filterOrders() {
+			let contentCategory, priceRange, orderType;
+			const orderTypes = Array.from(document.querySelector('#orderTypeFilter').children);
+			orderTypes.map(item => {
+				if (item.classList.contains('active')) {
+					orderType = item.dataset.value;
+				}
+
+			});
+			const contentCategorys = Array.from(document.querySelector('#contentCategoryFilter').children);
+			contentCategorys.map(item => {
+				if (item.classList.contains('active')) {
+					contentCategory = item.dataset.value;
+				}
+			});
+			const priceRanges = Array.from(document.querySelector('#priceRangeFilter').children);
+			priceRanges.map(item => {
+				if (item.classList.contains('active')) {
+					priceRange = item.dataset.value;
+				}
+			});
+			const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+			try {
+				const apiData = await fetchOrders();
+				const filteredOrders = apiData.data.filter(order => {
+					if (orderType && order.f_32jflifocbc !== orderType) return false;
+					if (contentCategory && order.f_keedm2xu11w !== contentCategory) return false;
+					if (priceRange) {
+						const [min, max] = priceRange.split('-').map(Number);
+						if (!order.f_kalomvbbbxa || order.f_kalomvbbbxa < min || (max && order.f_kalomvbbbxa > max)) return false;
+					}
+					if (searchTerm && (!order.f_0umtpxkakrb || !order.f_0umtpxkakrb.toLowerCase().includes(searchTerm))) return false;
+					return true;
+				});
+
+				renderOrderList(filteredOrders);
+			} catch (error) {
+				console.error('Error filtering orders:', error);
+				document.getElementById('orderList').innerHTML = `<p class="col-span-full text-center text-red-500">${i18n.translate('orderListing.filterOrderError')}</p>`;
+			}
+		}
+
+
+
+		// 展开/收起筛选
+		document.getElementById('expandFilters').addEventListener('click', function () {
+			const expandedFilters = document.getElementById('expandedFilters');
+			expandedFilters.classList.toggle('hidden');
+			this.textContent = expandedFilters.classList.contains('hidden')
+				? i18n.translate('orderListing.moreFilters')
+				: i18n.translate('orderListing.hideFilters');
+			console.log(i18n.translate('orderListing.moreFilters'))
+		});
+
+
+
+		// 添加筛选事件监听器
+		// document.querySelectorAll('.filter-option').forEach(option => {
+		// 	option.addEventListener('click', function () {
+		// 		const parent = this.parentElement;
+		// 		parent.querySelector('.active')?.classList.remove('active');
+		// 		this.classList.add('active');
+		// 		filterOrders();
+		// 	});
+		// });
+		function FilterSelect() {
+
+			const priceTarget = document.getElementById("priceRangeFilter")
+			const arr = Array.from(priceTarget.children)
+			arr.map(item => {
+				item.onclick = function () {
+					arr.map(items => {
+						if (items.classList.contains("active")) {
+							items.classList.remove("active")
+						}
+					})
+					item.classList.add("active")
+					filterOrders()
+				}
+			})
+
+			const contentTarget = document.getElementById("contentCategoryFilter")
+			const arr1 = Array.from(contentTarget.children)
+			arr1.map(item => {
+				item.onclick = function () {
+					arr1.map(items => {
+						if (items.classList.contains("active")) {
+							items.classList.remove("active")
+						}
+					})
+					item.classList.add("active")
+					filterOrders()
+				}
+			})
+
+			const typeTarget = document.getElementById("orderTypeFilter")
+			const arr2 = Array.from(typeTarget.children)
+			arr2.map(item => {
+				item.onclick = function () {
+					arr2.map(items => {
+						if (items.classList.contains("active")) {
+							items.classList.remove("active")
+						}
+					})
+					item.classList.add("active")
+					filterOrders()
+				}
+			})
+		}
+
+
+		// 搜索功能
+		document.getElementById('searchInput').addEventListener('input', filterOrders);
+		
+	</script>
+
+	<!-- 添加固定位置的卡片 -->
+	<div class="fixed bottom-4 right-4 space-y-3 z-50">
+		<!-- 悬浮按钮 -->
+		<button id="toggleButton"
+			class="bg-white rounded-full shadow-lg p-4 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center justify-center w-16 h-16">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24"
+				stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+					d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+			</svg>
+		</button>
+
+
+		<!-- 找客户卡片 -->
+		<div id="customerCard"
+			class=" bg-white rounded-xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center space-x-4 w-64  group hidden "
+			onclick="window.location.href='find-client-form.html'">
+			<div class="flex-grow">
+				<p class="font-semibold text-lg text-gray-800 group-hover:text-blue-600 transition-colors duration-300" data-i18n="orderListing.findClientButton">
+					我要找客户</p>
+				<p class="text-sm text-blue-600 group-hover:text-blue-400 transition-colors duration-300" data-i18n="orderListing.findClientDescription">寻找甲方
+					&gt;&gt;&gt;</p>
+			</div>
+			<div class="bg-blue-100 p-3 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+				<!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 group-hover:text-blue-600 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg> -->
-					<img src="A.svg">
-				</div>
-			</div>
-
-			<!-- 买内容卡片 -->
-			<div id="contentCard" class="bg-white rounded-xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center space-x-4 w-64  group hidden" onclick="window.location.href='order-form.html'">
-				<div class="flex-grow">
-					<p class="font-semibold text-lg text-gray-800 group-hover:text-green-600 transition-colors duration-300">我要买内容</p>
-					<p class="text-sm text-green-600 group-hover:text-green-400 transition-colors duration-300">发布需求 &gt;&gt;&gt;</p>
-				</div>
-				<div class="bg-green-100 p-3 rounded-full group-hover:bg-green-200 transition-colors duration-300">
-					<!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500 group-hover:text-green-600 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg> -->
-					<img src="B.svg">
-				</div>
+				<img src="A.svg">
 			</div>
 		</div>
 
-		<script>
-			// 检查是否为移动端设备
-			    function isMobileDevice() {
-			      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-			    }
-			
-			    // 点击悬浮按钮展开或收起卡片
-			    document.getElementById('toggleButton').addEventListener('click', function () {
-					if (isMobileDevice()) {
-    document.getElementById('customerCard').style.opacity = '1';
-    document.getElementById('contentCard').style.opacity = '1';
-  }
-			      this.classList.add('hidden');
-			      document.getElementById('customerCard').classList.remove('hidden');
-			      document.getElementById('contentCard').classList.remove('hidden');
-			      setTimeout(() => {
-			        document.getElementById('customerCard').classList.add('hidden');
-			        document.getElementById('contentCard').classList.add('hidden');
-			        document.getElementById('toggleButton').classList.remove('hidden');
-			      }, 3500);
-			    });
-			
-			    // 点击页面其他地方收起卡片（移动端）
-			    document.addEventListener('click', function (event) {
-			      if (isMobileDevice()) {
-			        if (!document.getElementById('toggleButton').contains(event.target) &&!document.getElementById('customerCard').contains(event.target) &&!document.getElementById('contentCard').contains(event.target)) {
-			          document.getElementById('customerCard').classList.add('hidden');
-			          document.getElementById('contentCard').classList.add('hidden');
-			          document.getElementById('toggleButton').classList.remove('hidden');
-			        }
-			      }
-			    });
-			
-			    // 初始状态，如果是 PC 端直接显示卡片
-			    if (!isMobileDevice()) {
-			      document.getElementById('customerCard').classList.remove('hidden');
-			      document.getElementById('contentCard').classList.remove('hidden');
-			      document.getElementById('toggleButton').classList.add('hidden');
-			    }
-		</script>
-		<script src="com.js"></script>
-	</body>
+		<!-- 买内容卡片 -->
+		<div id="contentCard"
+			class="bg-white rounded-xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center space-x-4 w-64  group hidden"
+			onclick="window.location.href='order-form.html'">
+			<div class="flex-grow">
+				<p class="font-semibold text-lg text-gray-800 group-hover:text-green-600 transition-colors duration-300" data-i18n="orderListing.buyContentButton">
+					我要买内容</p>
+				<p class="text-sm text-green-600 group-hover:text-green-400 transition-colors duration-300" data-i18n="orderListing.buyContentDescription">发布需求
+					&gt;&gt;&gt;</p>
+			</div>
+			<div class="bg-green-100 p-3 rounded-full group-hover:bg-green-200 transition-colors duration-300">
+				<!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500 group-hover:text-green-600 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg> -->
+				<img src="B.svg">
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// 检查是否为移动端设备
+		function isMobileDevice() {
+			return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+		}
+
+		// 点击悬浮按钮展开或收起卡片
+		document.getElementById('toggleButton').addEventListener('click', function () {
+			if (isMobileDevice()) {
+				document.getElementById('customerCard').style.opacity = '1';
+				document.getElementById('contentCard').style.opacity = '1';
+			}
+			this.classList.add('hidden');
+			document.getElementById('customerCard').classList.remove('hidden');
+			document.getElementById('contentCard').classList.remove('hidden');
+			setTimeout(() => {
+				document.getElementById('customerCard').classList.add('hidden');
+				document.getElementById('contentCard').classList.add('hidden');
+				document.getElementById('toggleButton').classList.remove('hidden');
+			}, 3500);
+		});
+
+		// 点击页面其他地方收起卡片（移动端）
+		document.addEventListener('click', function (event) {
+			if (isMobileDevice()) {
+				if (!document.getElementById('toggleButton').contains(event.target) && !document.getElementById('customerCard').contains(event.target) && !document.getElementById('contentCard').contains(event.target)) {
+					document.getElementById('customerCard').classList.add('hidden');
+					document.getElementById('contentCard').classList.add('hidden');
+					document.getElementById('toggleButton').classList.remove('hidden');
+				}
+			}
+		});
+
+		// 初始状态，如果是 PC 端直接显示卡片
+		if (!isMobileDevice()) {
+			document.getElementById('customerCard').classList.remove('hidden');
+			document.getElementById('contentCard').classList.remove('hidden');
+			document.getElementById('toggleButton').classList.add('hidden');
+		}
+	</script>
+
+	<script src="com.js"></script>
+</body>
+
 </html>
