@@ -34,7 +34,7 @@ function getIpAndLocation() {
 
 // 定义一个函数用于发送埋点数据
 function sendTrackingData(page, action, referrer) {
-  const entry_timestamp = new Date().getTime();  // 更改为 entry_timestamp
+  const entry_timestamp = Math.floor(new Date().getTime() / 1000);   // 更改为 entry_timestamp
 
   // 获取用户 IP 和属地信息
   getIpAndLocation()
