@@ -214,7 +214,7 @@
 		"engineeringMachinery": "工程机械",
 		"internetPlus": "互联网+",
 		"technologyComprehensive": "科技综合",
-		"examplePlaceholder": "示例：\n 我方擅长信息流视频和广告宣传视频的制作。\n 视频时长通常为 1 - 2 分钟，可根据需求配备字幕和配音。\n 从脚本创作到拍摄剪辑，再到后期制作、配音包装，我均可独立完成。\n 收费标准通常为 50 元/条,会根据项目具体情况而定，需面议。\n 正常制作周期约为 5 个工作日，若您有特殊需求，制作周期也可进行适当调整，以满足您的期望。"
+		"examplePlaceholder": "示例：（涉及图片、视频等附件，可使用粘贴网盘链接等方式）\n 我方擅长信息流视频和广告宣传视频的制作。\n 视频时长通常为 1 - 2 分钟，可根据需求配备字幕和配音。\n 从脚本创作到拍摄剪辑，再到后期制作、配音包装，我均可独立完成。\n 收费标准通常为 50 元/条,会根据项目具体情况而定，需面议。\n 正常制作周期约为 5 个工作日，若您有特殊需求，制作周期也可进行适当调整，以满足您的期望。"
 	},
 	"orderForm": {
 		"pageTitle": "找乙方需求提交",
@@ -238,7 +238,9 @@
 		"orderBudget": "订单预算（元）",
 		"requiredQuantity": "需求数量（个）",
 		"validPeriod": "有效时间",
+		"selectTimeRange": "选择时间范围",
 		"contentRequirements": "内容要求",
+		"examplePlaceholder": "涉及图片、视频等附件，可使用粘贴网盘链接等方式",
 		"collectionInstructions": "收益说明",
 		"detailedDescription": "详细说明",
 		"submit": "提交"

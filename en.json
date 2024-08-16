@@ -214,7 +214,7 @@
 		"engineeringMachinery": "Engineering Machinery",
 		"internetPlus": "Internet Plus",
 		"technologyComprehensive": "Technology Comprehensive",
-		"examplePlaceholder": "Example:\n I am expert in the production of information flow videos and advertising promotion videos.\n The video duration is typically 1 - 2 minutes, and subtitles and dubbing can be provided based on requirements.\n From script creation to shooting and editing, to post-production, dubbing and packaging, I can accomplish all independently.\n The charging standard is usually 50 yuan per item, and it will be determined according to the specific circumstances of the project and needs to be negotiated.\n The normal production cycle is approximately 5 working days. If you have special needs, the production cycle can also be adjusted appropriately to meet your expectations."
+		"examplePlaceholder": "Example:（Involving attachments such as pictures and videos, methods such as pasting cloud drive links can be used）\n I am expert in the production of information flow videos and advertising promotion videos.\n The video duration is typically 1 - 2 minutes, and subtitles and dubbing can be provided based on requirements.\n From script creation to shooting and editing, to post-production, dubbing and packaging, I can accomplish all independently.\n The charging standard is usually 50 yuan per item, and it will be determined according to the specific circumstances of the project and needs to be negotiated.\n The normal production cycle is approximately 5 working days. If you have special needs, the production cycle can also be adjusted appropriately to meet your expectations."
 	},
 	"orderForm": {
 		"pageTitle": "Find Party B Demand Submission",
@@ -239,6 +239,8 @@
 		"requiredQuantity": "Required Quantity",
 		"validPeriod": "Valid Period",
 		"contentRequirements": "Content Requirements",
+		"selectTimeRange": "Select Time Range",
+		"examplePlaceholder": "Involving attachments such as pictures and videos, methods such as pasting cloud drive links can be used",
 		"collectionInstructions": "Collection Instructions",
 		"detailedDescription": "Detailed Description",
 		"submit": "Submit"
