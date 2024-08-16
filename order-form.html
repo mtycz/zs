@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome-5.15.2.all.css">
 		<link rel="stylesheet" type="text/css" href="com.css" />
 		<script src="./i18n.js"></script>
+		<script src="./ana.js"></script>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
 	</head>
@@ -282,6 +283,11 @@
     document.head.appendChild(script);
   }
 })();
+		</script>
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', () => {
+  sendTrackingData('找乙方', '访问', document.referrer);
+});
 		</script>
 	</body>
 </html>

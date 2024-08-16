@@ -80,3 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     languageButtonTextMobile.setAttribute('data-i18n', languageFromCookie === 'zh'? 'common.switchToEnglish' : 'common.switchToChinese');
     languageButtonTextMobile.textContent = languageFromCookie === 'zh'? 'English' : '中文';
   });
+	
+	
+	
+	
