@@ -65,6 +65,7 @@ function toggleLanguage() {
 
   // 将语言设置存储到 Cookie 中，有效期为 30 天
   document.cookie = `language=${newLanguage}; max-age=2592000; path=/`;
+  console.log(newLanguage);
 	// 刷新页面
   location.reload();
 }
@@ -80,7 +81,26 @@ document.addEventListener('DOMContentLoaded', function() {
     languageButtonTextMobile.setAttribute('data-i18n', languageFromCookie === 'zh'? 'common.switchToEnglish' : 'common.switchToChinese');
     languageButtonTextMobile.textContent = languageFromCookie === 'zh'? 'English' : '中文';
   });
-	
-	
-	
-	
+
+ // 移动端菜单切换逻辑 (与之前相同)
+  function toggleSolutionsMenu() {
+    const submenu = document.getElementById('solutionsSubmenu');
+    submenu.classList.toggle('hidden');
+  }
+
+  // 新增：PC端二级菜单展开逻辑
+  document.addEventListener('DOMContentLoaded', function() {
+    const solutionsButton = document.getElementById('solutions');
+    const flyoutMenu = solutionsButton.nextElementSibling;
+
+    solutionsButton.addEventListener('mouseenter', () => {
+      flyoutMenu.classList.remove('opacity-0', 'translate-y-1', 'pointer-events-none');
+      flyoutMenu.classList.add('opacity-100', 'translate-y-0');
+    });
+
+    const header = document.querySelector('header');
+    header.addEventListener('mouseleave', () => {
+      flyoutMenu.classList.add('opacity-0', 'translate-y-1', 'pointer-events-none');
+      flyoutMenu.classList.remove('opacity-100', 'translate-y-0');
+    });
+  });

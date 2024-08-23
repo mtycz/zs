@@ -2,11 +2,26 @@
 	"common": {
 		"pageTitle": "VidOps One-stop Content Service Platform",
 		"home": "Home",
+		"solutions": "Solutions",
+		"customVideoPurchase": "Custom Video Purchase",
+		"customVideoPurchaseDescription": "Bulk custom high-quality video content to meet the content needs of various industries.",
+		"contentTradingPlatform": "Content Trading Platform",
+		"contentTradingPlatformDescription": "One-stop content trading service, fast and reliable buying and selling.",
+		"coordinationNetworkingScheme": "Coordination networking scheme",
+		"coordinationNetworkingSchemeDescription": "Break through geographical and environmental limitations and achieve efficient cross-network collaboration.",
+		"commercialDetailsCustomization": "Commercial Details Customization",
+		"commercialDetailsCustomizationDescription": "Under improvement. Stay tuned.",
+		"aerialPhotographyService": "Aerial Photography Service",
+		"aerialPhotographyServiceDescription": "Under improvement. Stay tuned.",
+		"goingGlobalService": "Going Global Service",
+		"goingGlobalServiceDescription": "Under improvement. Stay tuned.",
+		"notYetOpen": "Not yet open",
 		"orderSquare": "Order Square",
 		"contactUs": "Contact Us",
 		"switchToEnglish": "English",
 		"switchToChinese": "中文",
-		"copyright": "© 2024 ZhuShan Culture One-stop VidOps content service platform. All rights reserved."
+		"copyright": "© 2024 ZhuShan Culture One-stop VidOps content service platform. All rights reserved.",
+		"internationalWebsite": "ZhuShan Culture international"
 	},
 	"index": {
 		"mainTitle1": "One-Stop Content Trading Platform",
@@ -52,7 +67,7 @@
 		"submitNow": "Submit Now"
 	},
 	"orderListing": {
-		"title" : "Order listing",
+		"title": "Order listing",
 		"backToOrderList": "Back to Order List",
 		"orderType": "Order Type",
 		"contentCategory": "Content Category",
@@ -272,5 +287,35 @@
 		"submitRegistration": "Submit Registration",
 		"shareMessage1": "Your friend shared an order",
 		"shareMessage2": "view details link"
+	},
+	"purchase": {
+		"videoPurchaseTitle": "Video Purchase",
+		"videoPurchaseDescription": "Provide selected high-quality video content to meet your creative needs. Cover multiple industries and themes to help your project succeed.",
+		"contactUsButton": "Contact Us",
+		"commonDifficultiesTitle": "Common Difficulties in Video Purchasing",
+		"complexProcessTitle": "Complex Video Purchasing Process",
+		"selectionDifficulty": "Selection Difficulty",
+		"quickSelectionProblem": "How to quickly screen massive videos?",
+		"lackOfChannels": "Lack of Channels",
+		"difficultCommunication": "It is difficult to establish accurate and effective communication channels with creators.",
+		"cumbersomeProcess": "Cumbersome Process",
+		"inefficientProcess": "Cumbersome and inefficient purchasing process.",
+		"delayedDelivery": "Fast Delivery",
+		"uncontrolledDelivery": "Delivery speed is uncontrollable, and delays occur frequently.",
+		"advantageTitle": "Advantages of Zhushan Video Purchasing",
+		"oneStopSolutionTitle": "One-stop Solution For Content Purchasing Needs",
+		"advantagePlenty": "Plenty",
+		"varietyContent": "Massive creators provide high-quality content to meet diverse needs.",
+		"advantageQuick": "Quick",
+		"efficientProcess": "Efficient purchasing process, quick response to needs 7*12.",
+		"advantageGood": "Good",
+		"qualityContent": "Quality content guarantee, enhancing brand image.",
+		"advantageSaving": "Saving",
+		"professionalSupport": "Professional team support to reduce operating costs.",
+		"solveIndustryNeedsTitle": "Solve Content Needs Of Various Industries",
+		"prevVideoButton": "Previous Video",
+		"nextVideoButton": "Next Video",
+		"industryTitle": "Industry Title",
+		"industryDescription": "Industry Description"
 	}
 }

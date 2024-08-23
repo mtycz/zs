@@ -1,45 +1,171 @@
-
 <!-- 头部导航栏 -->
-<header class="fixed w-full z-10 transition-all duration-300 ease-in-out text-black bg-white font-bold ">
-  <div class="flex justify-between items-center px-2 sm:px-4 lg:px-8 py-2">
-    <a href="index.html">
-      <img src="logo.png" alt="企业 LOGO" class="w-40 h-8">
-    </a>
-    
-    <!-- 汉堡菜单按钮 -->
-    <button id="menuToggle" class="md:hidden focus:outline-none">
-      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-      </svg>
-    </button>
-    
-    <!-- 桌面端导航菜单 -->
-    <nav class="hidden md:flex space-x-4">
-  <a href="index.html" class="" data-i18n="common.home">首页</a>
-  <a href="order-listing-page.html" class="" data-i18n="common.orderSquare">订单广场</a>
-  <a href="index.html#contact" class="" data-i18n="common.contactUs">联系我们</a>
-  <button onclick="toggleLanguage()" class="bg-red-600 text-red-50 px-2 py-0 rounded hover:bg-fuchsia-600 transition ease-in-out duration-200">
-    <span id="languageButtonText" data-i18n="common.switchToEnglish">English</span>
-  </button>
-</nav>
-  </div>
+<header class="fixed w-full z-10 transition-all duration-300 ease-in-out text-black bg-white font-bold">
+	<div class="mx-auto px-2 sm:px-4 lg:px-8">
+		<div class="flex justify-between items-center py-2">
+			<a href="index.html" class="flex flex-row sm:space-x-4 sm:space-y-4 space-x-1 space-y-1">
+				<img src="logo.png" alt="企业 LOGO" class="w-20 h-4 sm:w-40 sm:h-8">
+				<span class="text-xs" data-i18n="common.internationalWebsite">国际站</span>
+			</a>
+
+			<!-- 桌面端导航菜单 -->
+			<nav class="hidden md:flex space-x-4">
+				<a href="index.html" class="hover:text-red-600" data-i18n="common.home">首页</a>
+				<div class="relative">
+					<button type="button" class="inline-flex items-center gap-x-1  font-semibold leading-6 hover:text-red-600"
+					 aria-expanded="false" id="solutions">
+						<span data-i18n="common.solutions">解决方案</span>
+						<svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+							 clip-rule="evenodd" />
+						</svg>
+					</button>
+
+					<!-- Flyout menu -->
+					<div class="absolute left-1/2 z-10 mt-3 flex w-screen max-w-max -translate-x-1/2 px-4 opacity-0 translate-y-1 pointer-events-none transition-all duration-200">
+						<div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+							<div class="p-4">
+								<div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100 cursor-pointer" onclick="window.location.href='video-purchase-page.html'">
+									<div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<svg class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										 stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0 1 18 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0 1 18 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 0 1 6 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5"></path>
+										</svg>
+									</div>
+									<div>
+										<a href="#" class="font-semibold text-gray-950 text-lg" data-i18n="common.customVideoPurchase">
+											定制视频采购
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-500" data-i18n="common.customVideoPurchaseDescription">批量定制高质量视频内容，满足各行业内容需求</p>
+									</div>
+								</div>
+								<div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100 cursor-pointer" onclick="window.location.href='order-listing-page.html'">
+									<div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<svg class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										 stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"></path>
+										</svg>
+									</div>
+									<div>
+										<a href="#" class="font-semibold text-gray-950 text-lg" data-i18n="common.contentTradingPlatform">
+											内容交易平台
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-500" data-i18n="common.contentTradingPlatformDescription">一站式内容交易服务，买卖快速又放心</p>
+									</div>
+								</div>
+								<div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100 cursor-pointer" onclick="window.open('https://www.feishunet.com/#/login?code=5h3PHvCXaT', '_blank')">
+									<div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<svg class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										 stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"></path>
+										</svg>
+									</div>
+									<div>
+										<a href="#" class="font-semibold text-gray-950 text-lg" data-i18n="common.coordinationNetworkingScheme">
+											协同组网方案
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-500" data-i18n="common.coordinationNetworkingSchemeDescription">突破地域限制，环境限制，实现高效跨网协同</p>
+									</div>
+								</div>
+								<div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100 cursor-not-allowed">
+									<div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<svg class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										 stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"></path>
+										</svg>
+									</div>
+									<div>
+										<a href="#" class="font-semibold text-gray-500 text-lg cursor-not-allowed" data-i18n="common.commercialDetailsCustomization">
+											商详定制
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-500" data-i18n="common.commercialDetailsCustomizationDescription">完善中，尽请期待</p>
+									</div>
+								</div>
+								<div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100 cursor-not-allowed">
+									<div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<svg class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										 stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"></path>
+										</svg>
+									</div>
+									<div>
+										<a href="#" class="font-semibold text-gray-500 text-lg cursor-not-allowed" data-i18n="common.aerialPhotographyService">
+											航拍服务
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-500" data-i18n="common.commercialDetailsCustomizationDescription">完善中，尽请期待</p>
+									</div>
+								</div>
+								<div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100 cursor-not-allowed">
+									<div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<svg class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+										 stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"></path>
+										</svg>
+									</div>
+									<div>
+										<a href="#" class="font-semibold text-gray-500 text-lg cursor-not-allowed" data-i18n="common.goingGlobalService">
+											出海服务
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-500" data-i18n="common.commercialDetailsCustomizationDescription">完善中，尽请期待</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="order-listing-page.html" class="hover:text-red-600" data-i18n="common.orderSquare">订单广场</a>
+				<a href="index.html#contact" class="hover:text-red-600" data-i18n="common.contactUs">联系我们</a>
+				<button onclick="toggleLanguage()" class="bg-red-600 text-red-50 px-2 py-0 rounded hover:bg-fuchsia-600 transition ease-in-out duration-200">
+					<span id="languageButtonText" data-i18n="common.switchToEnglish">English</span>
+				</button>
+			</nav>
+
+			<!-- 汉堡菜单按钮 -->
+			<button id="menuToggle" class="md:hidden focus:outline-none">
+				<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+				</svg>
+			</button>
+		</div>
+	</div>
 </header>
 
 <!-- 移动端抽屉菜单 -->
-<div id="mobileMenu" class="fixed inset-y-0 right-0 w-64 bg-white shadow-md transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-  <div class="flex flex-col h-full">
-    <button id="closeMenu" class="self-end p-4">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-    <nav class="flex flex-col space-y-4 p-4 font-bold">
-      <a href="index.html" class="text-gray-800" data-i18n="common.home">首页</a>
-      <a href="order-listing-page.html" class="text-gray-800" data-i18n="common.orderSquare">订单广场</a>
-      <a href="index.html#contact" class="text-gray-800" data-i18n="common.contactUs">联系我们</a>
+<div id="mobileMenu" class="fixed inset-y-0 right-0 w-full bg-white shadow-md transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+	<div class="flex flex-col h-full">
+		<button id="closeMenu" class="self-end p-4">
+			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+			</svg>
+		</button>
+		<nav class="flex flex-col space-y-4 p-4 font-bold">
+			<a href="index.html" class="text-gray-800" data-i18n="common.home">首页</a>
+			<div class="relative">
+				<span href="#" class="text-gray-800" data-i18n="common.solutions" onclick="toggleSolutionsMenu()">解决方案</span>
+				<button class="absolute right-0 top-0 p-2" onclick="toggleSolutionsMenu()">
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+					</svg>
+				</button>
+				<ul id="solutionsSubmenu" class="hidden rounded-md pl-8 pr-1 pt-2 pb-2 mt-2 mb-2 space-y-2 bg-gray-50 list-image-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNCAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSIjMzhiZGY4Ij48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMy42ODUuMTUzYS43NTIuNzUyIDAgMCAxIC4xNDMgMS4wNTJsLTggMTAuNWEuNzUuNzUgMCAwIDEtMS4xMjcuMDc1bC00LjUtNC41YS43NS43NSAwIDAgMSAxLjA2LTEuMDZsMy44OTQgMy44OTMgNy40OC05LjgxN2EuNzUuNzUgMCAwIDEgMS4wNS0uMTQzWiIgLz48L3N2Zz4=')]">
+					<li><a href="video-purchase-page.html" class="block text-gray-600"><span data-i18n="common.customVideoPurchase">定制视频采购</span></a></li>
+					<li><a href="order-listing-page.html" class="block text-gray-600"><span data-i18n="common.contentTradingPlatform">内容交易平台</span></a></li>
+					<li><a href="https://www.feishunet.com/#/login?code=5h3PHvCXaT" class="block text-gray-600"><span data-i18n="common.coordinationNetworkingScheme">协同组网方案</span></a></li>
+					<a href="#" class="block text-gray-400 text-sm"><span data-i18n="common.commercialDetailsCustomization">商详定制</span>(<span data-i18n="common.notYetOpen">暂未开放</span>)</a>
+					<a href="#" class="block text-gray-400 text-sm"><span data-i18n="common.aerialPhotographyService">航拍服务</span>(<span data-i18n="common.notYetOpen">暂未开放</span>)</a>
+					<a href="#" class="block text-gray-400 text-sm"><span data-i18n="common.goingGlobalService">出海服务</span>(<span data-i18n="common.notYetOpen">暂未开放</span>)</a>
+				</ul>
+			</div>
+			<a href="order-listing-page.html" class="text-gray-800" data-i18n="common.orderSquare">订单广场</a>
+			<a href="index.html#contact" class="text-gray-800" data-i18n="common.contactUs">联系我们</a>
 			<button onclick="toggleLanguage()" class="bg-red-600 text-red-50 px-2 py-0 rounded hover:bg-fuchsia-600 transition ease-in-out duration-200">
-        <span id="languageButtonTextMobile" data-i18n="common.switchToEnglish">English</span>
-      </button>
-    </nav>
-  </div>
+				<span id="languageButtonTextMobile" data-i18n="common.switchToEnglish">English</span>
+			</button>
+		</nav>
+	</div>
 </div>
