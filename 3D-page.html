@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title data-i18n="3d.modelingTitle">3D建模</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="com.css" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.21.1/axios.min.js"></script>
+		<script src="./i18n.js"></script>
+		<style>
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+				}
+
+				to {
+					opacity: 1;
+				}
+			}
+
+			.fade-in {
+				animation: fadeIn 0.5s ease-in-out;
+			}
+
+			.carousel-dot {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background-color: #cbd5e0;
+				margin: 0 4px;
+				transition: background-color 0.3s ease;
+			}
+
+			.carousel-dot.active {
+				background-color: #4299e1;
+			}
+
+			@keyframes spin {
+				0% {
+					transform: rotate(0deg);
+				}
+
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+
+			.loader {
+				border: 5px solid #f3f3f3;
+				border-top: 5px solid #3498db;
+				border-radius: 50%;
+				width: 50px;
+				height: 50px;
+				animation: spin 1s linear infinite;
+			}
+
+			.text-stroke {
+				text-shadow:
+					-1px -1px 0 #000,
+					1px -1px 0 #000,
+					-1px 1px 0 #000,
+					1px 1px 0 #000;
+				/* 文字描边 */
+			}
+		</style>
+	</head>
+
+	<body class="bg-gray-100">
+		
+		<script>
+					async function loadHeader() {
+				  try {
+				    const response = await fetch('header.html');
+				    if (response.ok) {
+				      const content = await response.text();
+				      const div = document.createElement('div');
+				      div.innerHTML = content;
+				      document.body.insertBefore(div, document.body.firstChild);
+				
+		
+				    } else {
+				      console.error('Failed to load header');
+				    }
+				  } catch (error) {
+				    console.error('Error loading header:', error);
+				  }
+				}
+				    loadHeader();
+		  </script>
+		
+		
+<div class=" bg-white shadow-md py-10 bg-cover bg-center text-stroke font-semibold" style="background-image: url(合作方/181326959-4d4aebc9bcc11bb8050c27d0ddd5f3354d7a935cf325a6c084bbc563a52de475.png)">
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-white text-stroke " data-i18n="3d.modelingTitle">3D建模</h1>
+        <p class="mt-2 text-white" data-i18n="3d.modelingDescription">打造逼真精美场景模型，满足您的视觉创意需求。涵盖多样风格场景，助力您的项目绽放独特魅力。。</p>
+        <button class="mt-4 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" data-i18n="3d.contactUsButton">联系我们</button>
+    </div>
+</div>
+
+<main class="container mx-auto px-4 py-8 mb-20">
+    <section class="mb-12">
+        <p class="mt-2 text-gray-600" data-i18n="3d.advantageTitle">竹韵建模优势</p>
+        <h2 class="text-2xl font-semibold mb-4" data-i18n="3d.oneStopSolutionTitle">为您提供专业的三维场景开发服务</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded shadow transform hover:scale-105 transition duration-300">
+                <h3 class="font-semibold text-blue-500" data-i18n="3d.scenarioModeling">场景建模</h3>
+                <p class="text-sm text-gray-600" data-i18n="3d.scenarioModelingDescription">游戏建模、3D场景、园区楼宇、产品三维、VR全景、设备拆解、3D动画等建模服务</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow transform hover:scale-105 transition duration-300">
+                <h3 class="font-semibold text-blue-500" data-i18n="3d.threeDimensionalVideo">三维视频</h3>
+                <p class="text-sm text-gray-600" data-i18n="3d.threeDimensionalVideoDescription">施工进展视频、园区漫游视频、线上展厅视频、产品三维动画视频、设备拆解视频</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow transform hover:scale-105 transition duration-300">
+                <h3 class="font-semibold text-blue-500" data-i18n="3d.vrVirtualSimulation">VR虚拟仿真</h3>
+                <p class="text-sm text-gray-600" data-i18n="3d.vrVirtualSimulationDescription">VR线上展厅/元宇宙、设备操作仿真实训、3D校园、仿真课程、VR就业面试实训</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow transform hover:scale-105 transition duration-300">
+                <h3 class="font-semibold text-blue-500" data-i18n="3d.threeDimensionalVisualizationDevelopment">三维可视化开发</h3>
+                <p class="text-sm text-gray-600" data-i18n="3d.threeDimensionalVisualizationDevelopmentDescription">智慧校园、智慧园区、工厂三维可视化、楼宇可视化、运输可视化、设备可视化</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 解决各行业内容需求 -->
+    <section class="mb-12 relative">
+        <h2 class="text-2xl font-semibold mb-2" data-i18n="3d.solveIndustryNeedsTitle">解决各行业内容需求</h2>
+        <div class="container mx-auto px-2 py-2">
+            <div id="tabsContainer" class="flex" data-i18n="3d.caseTitle">红河学院校园场景建模案例</div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center justify-around bg-white rounded-lg shadow-lg overflow-hidden bg-cover bg-center"
+             id="mainContainer">
+
+
+            <video class="w-full h-full " loop muted autoplay controls>
+                <source src="https://vamvv.onevaas.com/66d3/20240826/dp2jl4v00w7j400lw13j0dh68jv1wn7q.mp4" type="video/mp4"></source>
+
+            </video>
+
+        </div>
+    </section>
+
+
+<section id="contact" class="py-20 mt-24 bg-white rounded-lg shadow-lg">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12" data-i18n="index.contactUs">联系我们</h2>
+        <form id="contactForm" class="max-w-2xl mx-auto">
+            <div class="flex mb-4 space-x-4">
+                <div class="flex-1">
+                    <label for="company" class="block mb-2" data-i18n="index.companyName">企业名称</label>
+                    <input type="text" id="company" name="f_e9o061hn7ff" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="flex-1">
+                    <label for="position" class="block mb-2" data-i18n="index.position">职位</label>
+                    <input type="text" id="position" name="f_qy5meqx8tcp" class="w-full px-3 py-2 border rounded" required>
+                </div>
+            </div>
+            <div class="flex mb-4 space-x-4">
+                <div class="flex-1">
+                    <label for="name" class="block mb-2" data-i18n="index.name">姓名</label>
+                    <input type="text" id="name" name="f_o278rlva5q9" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="flex-1">
+                    <label for="phone" class="block mb-2" data-i18n="index.phone">电话</label>
+                    <input type="tel" id="phone" name="f_lem420colnp" class="w-full px-3 py-2 border rounded" required>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block mb-2" data-i18n="index.email">邮箱</label>
+                <input type="email" id="email" name="f_0qzuwywhr1f" class="w-full px-3 py-2 border rounded" required>
+            </div>
+            <div class="mb-4">
+                <label for="message" class="block mb-2" data-i18n="index.message">留言</label>
+                <textarea id="message" name="f_z9rldm5zav0" class="w-full px-3 py-2 border rounded" rows="4" required></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700 transition duration-300" data-i18n="index.submitNow">立即提交</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+		</main>
+
+		
+			<!-- 联系我们表单 -->
+				<script type="module">
+		import { globalUrl, globalAuthorization } from './TK.js';
+					document.addEventListener('DOMContentLoaded', function() {
+						const form = document.getElementById('contactForm');
+						form.addEventListener('submit', function(e) {
+							e.preventDefault();
+		
+							const formData = new FormData(form);
+							const data = Object.fromEntries(formData.entries());
+		
+							// 添加其他必需的空字段
+							const emptyFields = ['f_0t3y74lvgpb', 'f_7w8i9xxtvsr', 'f_a8o4hjiglcn', 'f_8kcp8hrj302'];
+							emptyFields.forEach(field => {
+								data[field] = '';
+							});
+							fetch(`${globalUrl}/api/Customer:create`, {
+									method: 'POST',
+									headers: {
+		
+										'Content-Type': 'application/json',
+										'Authorization': globalAuthorization
+									},
+		
+									body: JSON.stringify(data)
+								})
+								.then(response => response.json())
+								.then(data => {
+									alert('提交成功！稍后工作人员将会与您联系~\nThe translation was submitted successfully! A staff member will contact you shortly.');
+									form.reset();
+								})
+								.catch((error) => {
+									console.error('Error:', error);
+									alert('提交失败，请稍后重试。\nSubmission failed. Please retry later.');
+								});
+						});
+					});
+				</script>
+		
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', () => {
+		  sendTrackingData('视频采购', '访问', document.referrer);
+		});
+		
+		</script>
+		<script src="./ana.js"></script>
+		<script src="com.js"></script>
+	</body>
+
+</html>

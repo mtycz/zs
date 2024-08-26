@@ -5,6 +5,8 @@
 		"solutions": "解决方案",
 		"customVideoPurchase": "定制视频采购",
 		"customVideoPurchaseDescription": "批量定制高质量视频内容，满足各行业内容需求",
+		"modelingTitle": "3D建模",
+		"modelingDescription": "打造逼真精美场景模型，满足您的视觉创意需求。",
 		"contentTradingPlatform": "内容交易平台",
 		"contentTradingPlatformDescription": "一站式内容交易服务，买卖快速又放心",
 		"coordinationNetworkingScheme": "协同组网方案",
@@ -20,7 +22,7 @@
 		"contactUs": "联系我们",
 		"switchToEnglish": "English",
 		"switchToChinese": "中文",
-		"copyright": "© 2024 竹山文化 一站式VidOps内容服务平台. All rights reserved.",
+		"copyright": "© 2024 竹韵文化 一站式VidOps内容服务平台. All rights reserved.",
 		"internationalWebsite": "国际站"
 
 	},
@@ -303,7 +305,7 @@
 		"inefficientProcess": "采购流程繁琐低效",
 		"delayedDelivery": "快速交付",
 		"uncontrolledDelivery": "交付速度不可控，出现延期情况频发",
-		"advantageTitle": "竹山视频采购优势",
+		"advantageTitle": "竹韵视频采购优势",
 		"oneStopSolutionTitle": "一站式解决内容采购需求",
 		"advantagePlenty": "多",
 		"varietyContent": "海量创作者提供优质内容，满足多样化需求",
@@ -315,5 +317,22 @@
 		"professionalSupport": "专业团队支持，降低运营成本",
 		"solveIndustryNeedsTitle": "解决各行业内容需求"
 
+	},
+	"3d": {
+	"modelingTitle": "3D建模",
+	"modelingDescription": "打造逼真精美场景模型，满足您的视觉创意需求。涵盖多样风格场景，助力您的项目绽放独特魅力。",
+	"contactUsButton": "联系我们",
+	"advantageTitle": "竹韵建模优势",
+	"oneStopSolutionTitle": "为您提供专业的三维场景开发服务",
+	"scenarioModeling": "场景建模",
+	"scenarioModelingDescription": "游戏建模、3D场景、园区楼宇、产品三维、VR全景、设备拆解、3D动画等建模服务",
+	"threeDimensionalVideo": "三维视频",
+	"threeDimensionalVideoDescription": "施工进展视频、园区漫游视频、线上展厅视频、产品三维动画视频、设备拆解视频",
+	"vrVirtualSimulation": "VR虚拟仿真",
+	"vrVirtualSimulationDescription": "VR线上展厅/元宇宙、设备操作仿真实训、3D校园、仿真课程、VR就业面试实训",
+	"threeDimensionalVisualizationDevelopment": "三维可视化开发",
+	"threeDimensionalVisualizationDevelopmentDescription": "智慧校园、智慧园区、工厂三维可视化、楼宇可视化、运输可视化、设备可视化",
+	"solveIndustryNeedsTitle": "解决各行业内容需求",
+	"caseTitle": "红河学院校园场景建模案例"
 	}
 }

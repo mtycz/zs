@@ -104,3 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
       flyoutMenu.classList.remove('opacity-100', 'translate-y-0');
     });
   });
+
+  
+
+(function() {
+  var script = document.createElement('script');
+  script.src = 'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs';
+  script.type = 'module';
+  document.head.appendChild(script);
+})();

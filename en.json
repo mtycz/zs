@@ -5,6 +5,8 @@
 		"solutions": "Solutions",
 		"customVideoPurchase": "Custom Video Purchase",
 		"customVideoPurchaseDescription": "Bulk custom high-quality video content to meet the content needs of various industries.",
+		"modelingTitle": "3D Modeling",
+		"modelingDescription": "Create realistic and exquisite scene models to meet your visual creative needs. ",
 		"contentTradingPlatform": "Content Trading Platform",
 		"contentTradingPlatformDescription": "One-stop content trading service, fast and reliable buying and selling.",
 		"coordinationNetworkingScheme": "Coordination networking scheme",
@@ -20,8 +22,8 @@
 		"contactUs": "Contact Us",
 		"switchToEnglish": "English",
 		"switchToChinese": "中文",
-		"copyright": "© 2024 ZhuShan Culture One-stop VidOps content service platform. All rights reserved.",
-		"internationalWebsite": "ZhuShan Culture international"
+		"copyright": "© 2024 ZhuYun Culture One-stop VidOps content service platform. All rights reserved.",
+		"internationalWebsite": "ZhuYun Culture international"
 	},
 	"index": {
 		"mainTitle1": "One-Stop Content Trading Platform",
@@ -302,7 +304,7 @@
 		"inefficientProcess": "Cumbersome and inefficient purchasing process.",
 		"delayedDelivery": "Fast Delivery",
 		"uncontrolledDelivery": "Delivery speed is uncontrollable, and delays occur frequently.",
-		"advantageTitle": "Advantages of Zhushan Video Purchasing",
+		"advantageTitle": "Advantages of ZhuYun Video Purchasing",
 		"oneStopSolutionTitle": "One-stop Solution For Content Purchasing Needs",
 		"advantagePlenty": "Plenty",
 		"varietyContent": "Massive creators provide high-quality content to meet diverse needs.",
@@ -317,5 +319,22 @@
 		"nextVideoButton": "Next Video",
 		"industryTitle": "Industry Title",
 		"industryDescription": "Industry Description"
-	}
+	},
+	"3d": {
+    "modelingTitle": "3D Modeling",
+    "modelingDescription": "Create realistic and exquisite scene models to meet your visual creative needs. Covering diverse style scenes to help your project shine with unique charm.",
+    "contactUsButton": "Contact Us",
+    "advantageTitle": "Advantages of ZhuYun Modeling",
+    "oneStopSolutionTitle": "Provide you with professional three-dimensional scene development services",
+    "scenarioModeling": "Scenario Modeling",
+    "scenarioModelingDescription": "Game modeling, 3D scenes, park buildings, product 3D, VR panoramas, equipment disassembly, 3D animations and other modeling services",
+    "threeDimensionalVideo": "Three-dimensional Video",
+    "threeDimensionalVideoDescription": "Construction progress videos, park roaming videos, online exhibition hall videos, product 3D animation videos, equipment disassembly videos",
+    "vrVirtualSimulation": "VR Virtual Simulation",
+    "vrVirtualSimulationDescription": "VR online exhibition hall/metaverse, equipment operation simulation training, 3D campus, simulation courses, VR employment interview training",
+    "threeDimensionalVisualizationDevelopment": "Three-dimensional Visualization Development",
+    "threeDimensionalVisualizationDevelopmentDescription": "Smart campus, smart park, factory 3D visualization, building visualization, transportation visualization, equipment visualization",
+    "solveIndustryNeedsTitle": "Solve content needs of various industries",
+    "caseTitle": "Honghe College campus scene modeling case"
+  }
 }
