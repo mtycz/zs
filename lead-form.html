@@ -221,11 +221,11 @@
                         f_484mr3cjh05: referralCodeInput.value
                     };
 
-                    fetch('http://192.168.3.105:13000/api/Customer:create', {
+                    fetch(`${globalUrl}/api/Customer:create`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyNjcyNTQxNCwiZXhwIjoxNzI3MzMwMjE0fQ.PK4u0-LP_lxc6Abw2sGTwNqzZSj7TZqHZJzxcaI9JGs'
+                            'Authorization': globalAuthorization
                         },
                         body: JSON.stringify(formData)
                     })
