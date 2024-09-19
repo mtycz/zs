@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提交销售线索</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" type="text/css" href="com.css" />
+	<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.21.1/axios.min.js"></script>
+	<script src="./i18n.js"></script>
+	<script src="./ana.js"></script>
+</head>
+
+<body class="bg-gray-100">
+		<script>
+	
+			async function loadHeader() {
+				try {
+					const response = await fetch('header.html');
+					if (response.ok) {
+						const content = await response.text();
+						const div = document.createElement('div');
+						div.innerHTML = content;
+						document.body.insertBefore(div, document.body.firstChild);
+	
+	
+					} else {
+						console.error('Failed to load header');
+					}
+				} catch (error) {
+					console.error('Error loading header:', error);
+				}
+			}
+			loadHeader();
+	
+	
+	
+		</script>	
+	
+    <div class="container mx-auto px-4 py-16">
+        <h1 class="text-2xl font-bold text-center mb-8">提交销售线索</h1>
+        <form id="leadForm" class="max-w-xl mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="companyName">
+                    企业名称
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="companyName" type="text" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="position">
+                    联系人职位
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="position" type="text" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="contactName">
+                    联系人姓名
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="contactName" type="text" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="contactPhone">
+                    联系人电话
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="contactPhone" type="tel" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="contactEmail">
+                    联系人邮箱
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="contactEmail" type="email" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+                    线索描述
+                </label>
+                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" rows="3" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="referrerName">
+                    推荐人
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="referrerName" type="text">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="referrerPhone">
+                    推荐人电话
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="referrerPhone" type="tel">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="referralCode">
+                    推荐码
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="referralCode" type="text">
+            </div>
+            <div class="flex items-center justify-center">
+                <button id="submitButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    提交
+                </button>
+            </div>
+        </form>
+    </div>
+        <section class="text-center mb-20">
+            
+			<button id="tjjl" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg inline-block">推荐记录</button>
+        </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const referrerNameInput = document.getElementById('referrerName');
+            const referrerPhoneInput = document.getElementById('referrerPhone');
+            const referralCodeInput = document.getElementById('referralCode');
+            const submitButton = document.getElementById('submitButton');
+            const form = document.getElementById('leadForm');
+
+            let debounceTimer;
+
+            function debounce(func, delay) {
+                return function() {
+                    const context = this;
+                    const args = arguments;
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+                }
+            }
+
+            function checkReferralInfo() {
+                if (referrerNameInput.value && referrerPhoneInput.value) {
+                    fetchReferralCode(referrerNameInput.value, referrerPhoneInput.value);
+                } else if (referralCodeInput.value) {
+                    fetchReferrerInfo(referralCodeInput.value);
+                }
+            }
+
+            function fetchReferralCode(name, phone) {
+                const filter = JSON.stringify({
+                    "f_dqyjyfr32oc": name,
+                    "f_qka4cw2ujm5": phone
+                });
+                fetchData(filter, (data) => {
+                    if (data && data.f_614mjkggdba) {
+                        referralCodeInput.value = data.f_614mjkggdba;
+                    } else {
+                        referralCodeInput.value = '';
+                    }
+                    updateSubmitButton();
+                });
+            }
+
+            function fetchReferrerInfo(code) {
+                const filter = JSON.stringify({
+                    "f_614mjkggdba": code
+                });
+                fetchData(filter, (data) => {
+                    if (data) {
+                        referrerNameInput.value = data.f_dqyjyfr32oc || '';
+                        referrerPhoneInput.value = data.f_qka4cw2ujm5 || '';
+                    } else {
+                        referrerNameInput.value = '';
+                        referrerPhoneInput.value = '';
+                    }
+                    updateSubmitButton();
+                });
+            }
+
+            function fetchData(filter, callback) {
+                axios.get(`http://192.168.3.105:13000/api/t_b027l3pp0xm:get?filter=${encodeURIComponent(filter)}`, {
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyNjcyNTQxNCwiZXhwIjoxNzI3MzMwMjE0fQ.PK4u0-LP_lxc6Abw2sGTwNqzZSj7TZqHZJzxcaI9JGs'
+                    }
+                })
+                .then(function (response) {
+                    if (response.data && response.data.data) {
+                        callback(response.data.data);
+                    } else {
+                        callback(null);
+                    }
+                })
+                .catch(function (error) {
+                    console.error('Error fetching data:', error);
+                    callback(null);
+                });
+            }
+
+            function updateSubmitButton() {
+                submitButton.disabled = !referralCodeInput.value;
+                submitButton.classList.toggle('bg-gray-400', !referralCodeInput.value);
+                submitButton.classList.toggle('hover:bg-gray-500', !referralCodeInput.value);
+                submitButton.classList.toggle('bg-blue-500', referralCodeInput.value);
+                submitButton.classList.toggle('hover:bg-blue-700', referralCodeInput.value);
+            }
+
+            function handleURLCode() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const code = urlParams.get('code');
+                if (code) {
+                    referralCodeInput.value = code;
+                    fetchReferrerInfo(code);
+					referrerNameInput.disabled = true;
+                        referrerPhoneInput.disabled = true;
+                        referralCodeInput.disabled = true;
+                }
+            }
+
+            referrerNameInput.addEventListener('input', debounce(checkReferralInfo, 500));
+            referrerPhoneInput.addEventListener('input', debounce(checkReferralInfo, 500));
+            referralCodeInput.addEventListener('input', debounce(checkReferralInfo, 500));
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                if (referralCodeInput.value) {
+                    const formData = {
+                        f_e9o061hn7ff: document.getElementById('companyName').value,
+                        f_qy5meqx8tcp: document.getElementById('position').value,
+                        f_o278rlva5q9: document.getElementById('contactName').value,
+                        f_lem420colnp: document.getElementById('contactPhone').value,
+                        f_0qzuwywhr1f: document.getElementById('contactEmail').value,
+                        f_z9rldm5zav0: document.getElementById('description').value,
+                        f_484mr3cjh05: referralCodeInput.value
+                    };
+
+                    fetch('http://192.168.3.105:13000/api/Customer:create', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyNjcyNTQxNCwiZXhwIjoxNzI3MzMwMjE0fQ.PK4u0-LP_lxc6Abw2sGTwNqzZSj7TZqHZJzxcaI9JGs'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert('提交成功！稍后工作人员将会与您联系~\nThe translation was submitted successfully! A staff member will contact you shortly.');
+                        updateSubmitButton();
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        alert('提交失败，请稍后重试。\nSubmission failed. Please retry later.');
+                    });
+                } else {
+                    alert('请填写推荐码');
+                }
+            });
+
+            // Initial check for URL code and submit button state
+            handleURLCode();
+            updateSubmitButton();
+        });
+    </script>
+	<script>
+    document.getElementById('tjjl').addEventListener('click', function() {
+        window.location.href = 'referral-lookup.html';
+    });
+</script>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', () => {
+	  sendTrackingData('提交销售线索', '访问', document.referrer);
+	});
+	</script>
+		<script src="com.js"></script>
+</body>
+
+</html>

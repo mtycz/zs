@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推荐记录查询</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" type="text/css" href="com.css" />
+	<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.21.1/axios.min.js"></script>
+	<script src="./i18n.js"></script>
+	<script src="./ana.js"></script>
+</head>
+
+<body class="bg-gray-100">
+		<script>
+	
+			async function loadHeader() {
+				try {
+					const response = await fetch('header.html');
+					if (response.ok) {
+						const content = await response.text();
+						const div = document.createElement('div');
+						div.innerHTML = content;
+						document.body.insertBefore(div, document.body.firstChild);
+	
+	
+					} else {
+						console.error('Failed to load header');
+					}
+				} catch (error) {
+					console.error('Error loading header:', error);
+				}
+			}
+			loadHeader();
+	
+	
+	
+		</script>
+	
+    <div class="container mx-auto px-4 py-16">
+        <h1 class="text-2xl font-bold text-center mb-8">推荐记录查询</h1>
+        <form id="queryForm" class="mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-wrap justify-between">
+            <div class="mb-4 md:mb-0 w-full md:w-1/3 px-2">
+            	<label class="block text-gray-700 text-sm font-bold mb-2" for="queryPhone">
+            		推荐人电话
+            	</label>
+            	<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="queryPhone" type="tel">
+            </div>
+			<div class="mb-4 md:mb-0 w-full md:w-1/3 px-2">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="queryName">
+                    推荐人姓名
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="queryName" type="text">
+            </div>
+            
+            <div class="mb-4 md:mb-0 w-full md:w-1/3 px-2 flex items-end">
+                <div class="w-3/4 pr-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="queryCode">
+                        推荐码
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="queryCode" type="text">
+                </div>
+                <div class="w-1/4">
+                    <button id="queryButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        查询记录
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div id="personalLink" class="mx-auto bg-white shadow-md rounded px-8 py-4 mb-4 text-center font-bold break-all">你的专属链接为：输入信息查询后显示</div>
+        <div id="resultContainer" class="mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"></div>
+    </div>
+
+    <script type="module">
+		    import { globalUrl, globalAuthorization } from './TK.js';
+    const REFERRER_API_URL = `${globalUrl}/api/t_b027l3pp0xm:get`;
+    const RECORDS_API_URL = `${globalUrl}/api/Customer:list`;
+    const API_TOKEN = globalAuthorization;
+	console.log('globalUrl:', globalUrl);
+    console.log('globalAuthorization:', globalAuthorization);
+        const nameInput = document.getElementById('queryName');
+        const phoneInput = document.getElementById('queryPhone');
+        const codeInput = document.getElementById('queryCode');
+        const queryButton = document.getElementById('queryButton');
+        const personalLink = document.getElementById('personalLink');
+        const resultContainer = document.getElementById('resultContainer');
+
+        async function queryReferrerAPI(filter) {
+            try {
+                const response = await axios.get(REFERRER_API_URL, {
+                    params: { filter: JSON.stringify(filter) },
+                    headers: { 
+						'accept': 'application/json',
+						'Authorization': `${API_TOKEN}`,
+						}
+                });
+                return response.data.data;
+            } catch (error) {
+                console.error('Error querying referrer API:', error);
+                return null;
+            }
+        }
+
+        async function queryRecordsAPI(filter) {
+            try {
+                const response = await axios.get(RECORDS_API_URL, {
+                    params: { filter: JSON.stringify(filter) },
+                    headers: { 
+						'accept': 'application/json',
+						'Authorization': `${API_TOKEN}`,
+						}
+                });
+                return response.data.data;
+            } catch (error) {
+                console.error('Error querying records API:', error);
+                return null;
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            date.setHours(date.getHours()); // Add 8 hours for timezone conversion
+            return date.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
+        }
+
+        function getStatusDisplay(status) {
+            switch(status) {
+                case 'dh8nxeo9jj4':
+                    return '<span class="bg-green-500 text-white px-2 py-1 rounded">成功</span>';
+                case 'hp12ddtvm6c':
+                    return '<span class="bg-red-500 text-white px-2 py-1 rounded">失败</span>';
+                default:
+                    return '<span class="bg-yellow-500 text-white px-2 py-1 rounded">跟进中</span>';
+            }
+        }
+
+               function displayResults(data) {
+            if (data && data.length > 0) {
+                let html = '<div class="hidden lg:block">' +  // 大屏幕表格视图
+                    '<table class="min-w-full bg-white"><thead><tr>' +
+                    '<th class="px-4 py-2">推荐日期</th>' +
+                    '<th class="px-4 py-2">企业名称</th>' +
+                    '<th class="px-4 py-2">联系人职位</th>' +
+                    '<th class="px-4 py-2">联系人姓名</th>' +
+                    '<th class="px-4 py-2">联系人电话</th>' +
+                    '<th class="px-4 py-2">联系人邮箱</th>' +
+                    '<th class="px-4 py-2">线索描述</th>' +
+                    '<th class="px-4 py-2 min-w-28">推荐进度</th>' +
+                    '</tr></thead><tbody>';
+
+                data.forEach(item => {
+                    html += '<tr>' +
+                        `<td class="border px-4 py-2">${formatDate(item.createdAt)}</td>` +
+                        `<td class="border px-4 py-2">${item.f_e9o061hn7ff || ''}</td>` +
+                        `<td class="border px-4 py-2">${item.f_qy5meqx8tcp || ''}</td>` +
+                        `<td class="border px-4 py-2">${item.f_o278rlva5q9 || ''}</td>` +
+                        `<td class="border px-4 py-2">${item.f_lem420colnp || ''}</td>` +
+                        `<td class="border px-4 py-2">${item.f_0qzuwywhr1f || ''}</td>` +
+                        `<td class="border px-4 py-2 break-all">${item.f_z9rldm5zav0 || ''}</td>` +
+                        `<td class="border px-4 py-2 min-w-28">${getStatusDisplay(item.f_fe7ux3cz0xo)}</td>` +
+                        '</tr>';
+                });
+
+                html += '</tbody></table></div>';
+
+                // 小屏幕卡片视图
+                html += '<div class="lg:hidden space-y-4">';
+                data.forEach(item => {
+                    html += '<div class="bg-white shadow rounded-lg p-4 space-y-2">' +
+                        `<p><strong>推荐日期：</strong>${formatDate(item.createdAt)}</p>` +
+                        `<p><strong>企业名称：</strong>${item.f_e9o061hn7ff || ''}</p>` +
+                        `<p><strong>联系人职位：</strong>${item.f_qy5meqx8tcp || ''}</p>` +
+                        `<p><strong>联系人姓名：</strong>${item.f_o278rlva5q9 || ''}</p>` +
+                        `<p><strong>联系人电话：</strong>${item.f_lem420colnp || ''}</p>` +
+                        `<p><strong>联系人邮箱：</strong>${item.f_0qzuwywhr1f || ''}</p>` +
+                        `<p><strong>线索描述：</strong>${item.f_z9rldm5zav0 || ''}</p>` +
+                        `<p><strong>推荐进度：</strong>${getStatusDisplay(item.f_fe7ux3cz0xo)}</p>` +
+                        '</div>';
+                });
+                html += '</div>';
+
+                resultContainer.innerHTML = html;
+            } else {
+                resultContainer.innerHTML = '<p class="text-center text-gray-700">未找到匹配的记录。</p>';
+            }
+        }
+     function updatePersonalLink(code) {
+            if (code) {
+                const personalLinkDiv = document.getElementById('personalLink');
+                const link = `你的专属链接为：https://zywh.us.kg/lead-form.html?code=${code}`;
+                personalLinkDiv.innerHTML = `${link}<button class="copy-btn bg-blue-500 hover:bg-blue-700 text-white ml-8 px-2 py-1 rounded">复制</button>`;
+                const copyBtn = personalLinkDiv.querySelector('.copy-btn');
+                copyBtn.addEventListener('click', () => {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = link;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    const successDiv = document.createElement('div');
+                    successDiv.textContent = '复制成功';
+                    successDiv.classList.add('absolute', 'top-48', 'left-1/2', 'transform', '-translate-x-1/2', 'bg-green-500', 'text-white', 'px-4', 'py-2', 'rounded', 'copy-success');
+                    document.body.appendChild(successDiv);
+                    setTimeout(() => {
+                        successDiv.remove();
+                    }, 2000);
+                });
+            } else {
+                document.getElementById('personalLink').textContent = '';
+            }
+        }
+
+        async function handleReferrerQuery(field, value) {
+            const filter = { [field]: value };
+            const data = await queryReferrerAPI(filter);
+            if (data) {
+                nameInput.value = data.f_dqyjyfr32oc || '';
+                phoneInput.value = data.f_qka4cw2ujm5 || '';
+                codeInput.value = data.f_614mjkggdba || '';
+                updatePersonalLink(data.f_614mjkggdba);
+            } else {
+                updatePersonalLink('');
+            }
+        }
+
+        async function handleRecordsQuery() {
+            const code = codeInput.value.trim();
+            if (code) {
+                const filter = { f_8t720or3y1g: code };
+                const data = await queryRecordsAPI(filter);
+                displayResults(data);
+                updatePersonalLink(code);
+            } else {
+                resultContainer.textContent = '请输入推荐码进行查询。';
+                updatePersonalLink('');
+            }
+        }
+
+        nameInput.addEventListener('blur', () => handleReferrerQuery('f_dqyjyfr32oc', nameInput.value.trim()));
+        phoneInput.addEventListener('blur', () => handleReferrerQuery('f_qka4cw2ujm5', phoneInput.value.trim()));
+        codeInput.addEventListener('blur', () => handleReferrerQuery('f_614mjkggdba', codeInput.value.trim()));
+        queryButton.addEventListener('click', handleRecordsQuery);
+    </script>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', () => {
+	  sendTrackingData('推荐记录查询', '访问', document.referrer);
+	});
+	</script>
+		<script src="com.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推荐客户有礼</title>
+	<link rel="stylesheet" type="text/css" href="com.css" />
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<script src="./i18n.js"></script>
+	<script src="./ana.js"></script>
+	
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 99;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+		   .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+    }
+	.text-stroke {
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+		/* 文字描边 */
+	}
+    </style>
+</head>
+<body class="bg-gray-100">
+	
+	<script>
+				async function loadHeader() {
+			try {
+				const response = await fetch('header.html');
+				if (response.ok) {
+				const content = await response.text();
+				const div = document.createElement('div');
+				div.innerHTML = content;
+				document.body.insertBefore(div, document.body.firstChild);
+			
+	
+				} else {
+				console.error('Failed to load header');
+				}
+			} catch (error) {
+				console.error('Error loading header:', error);
+			}
+			}
+				loadHeader();
+	</script>
+    <div id="tj" class="bg-blue-600 text-white translate-y-10 py-4 px-6 text-center">
+        <button id="openModal" class="open-modal"><h1 class="text-sm md:text-2xl sm:text-base font-bold">推荐竹韵文化内容服务，领最高30%成单奖励！</h1></button>
+    </div>
+<div class=" bg-white shadow-md py-24 bg-cover bg-center font-semibold text-stroke tracking-widest" style="background-image: url(https://vmatvv.onevaas.com/86a4/20240920/4e50nk9rr71jjrxozlnxnxuj1n9l7xwr.jpeg)">
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-white " >千人推荐计划</h1>
+        <p class="mt-2 text-neutral-50 " >推荐好友成单，即获10%~30%高额奖励，连续推荐享高额叠加奖励</p>
+        <button id="openModal" class="open-modal bg-blue-500 hover:bg-blue-600 text-white font-bold mt-5 py-3 px-6 rounded-lg inline-block">立即推荐</button>
+    </div>
+</div>
+
+    <main class="container mx-auto px-6 py-8">
+        <section class="text-center mb-12">
+            <button id="openModal" class="open-modal"><p class="text-sm md:text-2xl sm:text-base  text-gray-600">推荐好友成单，即可获得丰厚奖励。立即加入我们的推荐计划！</p></button>
+        </section>
+
+		<section class="bg-white rounded-lg shadow-md p-8 mb-12">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">推荐流程</h2>
+    <div class="flex flex-col md:flex-row items-center justify-evenly  ">
+        <div class="text-center mb-4 md:mb-0">
+            <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span class="text-blue-500 text-2xl font-bold">1</span>
+            </div>
+            <p class="text-gray-700">点击<button class="open-modal  text-blue-600">立即推荐</button>成为推荐官</p>
+			<p class="text-gray-700"></p>
+        </div>
+        <svg class="w-8 h-8 text-blue-500 transform rotate-90 md:rotate-0 my-2 md:my-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        <div class="text-center mb-4 md:mb-0">
+            <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span class="text-blue-500 text-2xl font-bold">2</span>
+            </div>
+            <p class="text-gray-700">分享链接/提交名单</p>
+        </div>
+        <svg class="w-8 h-8 text-blue-500 transform rotate-90 md:rotate-0 my-2 md:my-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        <div class="text-center mb-4 md:mb-0">
+            <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span class="text-blue-500 text-2xl font-bold">3</span>
+            </div>
+            <p class="text-gray-700">推荐成功签约</p>
+        </div>
+        <svg class="w-8 h-8 text-blue-500 transform rotate-90 md:rotate-0 my-2 md:my-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        <div class="text-center">
+            <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <span class="text-blue-500 text-2xl font-bold">4</span>
+            </div>
+            <p class="text-gray-700">奖励发放</p>
+        </div>
+    </div>
+</section>
+
+        <section class="bg-white rounded-lg shadow-md p-8 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="border border-gray-200 rounded-lg p-6 text-center">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">推荐成单即享奖励</h3>
+                    <p class="text-gray-600">在职企业或老客户重复推荐仍享奖励</p>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-6 text-center">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">高额连续推荐奖励</h3>
+                    <p class="text-gray-600">连续推荐奖励递增，最高可享30%成单奖励</p>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-6 text-center">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">超长推荐有效期</h3>
+                    <p class="text-gray-600">180天超长期限，期间成单仍给奖励</p>
+                </div>
+            </div>
+        </section>
+<section class="text-center mb-6">
+            <button id="openModal" class="open-modal bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg inline-block">立即推荐</button>
+        </section>
+        <section class="bg-white rounded-lg shadow-md p-8 mb-12 flex justify-center items-center">
+           <div class=" max-w-2xl w-full">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">活动细则</h2>
+        <ul class="pl-8 text-gray-700 space-y-3 text-sm tracking-wide">
+            <li>1. 活动时间：2024年9月20日至2024年12月31日</li>
+            <li>2. 参与对象：本活动仅限个人参与，不限定是否为竹韵文化新老客户。</li>
+			<li>3. 参与方式：报名成功成为推荐官后，在活动页提交线索或分享专属链接邀请被推荐人填写信息。</li>
+			<li>4. 推荐规则：</li>
+			<li class="pl-4">a) 同一家公司，被多人推荐，以最先推荐人为准；</li>
+			<li class="pl-4">b) 被推荐公司在3个月内有竹韵文化销售跟进记录，则不符合推荐规则；</li>
+			<li class="pl-4">c) 推荐关联有效期：自提交线索日起，180天内签约，算为推荐成功；</li>
+			<li class="pl-4">d) 老客户重复推荐需要满足服务期结束时间>180天。</li>
+			<li>5. 奖励规则：</li>
+			<li class="pl-4">a) 基础奖励： 推荐成功后，根据成单情况核定后，给予10%~20%的首次签单金额奖励；</li>
+			<li class="pl-4">a) 连续推荐奖励：活动期间多次推荐，则在基础奖励的基础上，除开首单每次递增5%的额外奖励，奖励合计30%封顶；</li>
+			<li class="pl-8">（例如：活动期间成功推荐3单，且第3单的基础奖励核定为18%，第3单的连续推荐奖励为5%+5%=10%，该单总共可获奖励为18%+10%=28%。<br>若继续推荐成功第4单，且第4单的基础奖励核定为16%，第4单的连续推荐奖励为5%+5%+5%=15%，因16%+15%>30%，则该单总共可获奖励为30%）</li>
+            <li>6. 奖励发放：成功推荐后的30个工作日内发放</li>
+            <li>7. 推荐成功定义：被推荐客户成功签约</li>
+			<li>8. 推荐进度可在下方 推荐记录 中进行查询</li>
+			<li class="text-xl text-blue-500">提示：若遗忘了专属推荐链接，可在 推荐记录页面 中输入信息查询</li>
+            <li>本活动最终解释权临湘市竹韵文化有限责任公司所有</li>
+        </ul>
+    </div>
+        </section>
+		
+
+
+        <section class="text-center">
+            <button id="openModal" class="open-modal bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg inline-block">立即推荐</button>
+			<button id="tjjl" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg inline-block">推荐记录</button>
+        </section>
+		
+    </main>
+
+<div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <h2 class="text-2xl font-bold mb-4">填写信息，成为推荐官</h2>
+                <div style="text-align: center;">
+                    <form id="recommendForm">
+                        <div class="mb-4">
+                            <input type="text" id="name" name="name" placeholder="您的姓名" class="w-full p-2 border rounded" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" id="company" name="company" placeholder="所在公司全称 , 无公司可填写个人" class="w-full p-2 border rounded" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="tel" id="phone" name="phone" placeholder="手机号码" class="w-full p-2 border rounded" required>
+                        </div>
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">下一步</button>
+                    </form>
+                    <h4 class="mt-8">已是推荐官？<a href="lead-form.html" class="text-blue-500">点此提交线索</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	
+	<script type="module">
+		import { globalUrl, globalAuthorization } from './TK.js';
+        // 获取模态框和相关元素
+        const modal = document.getElementById('myModal');
+        const openButtons = document.querySelectorAll('.open-modal');
+        const closeButton = document.querySelector('.close');
+
+        // 为每个打开按钮添加点击事件
+        openButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                modal.style.display = 'block';
+            });
+        });
+
+        // 关闭按钮点击事件
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // 点击模态框外部关闭模态框
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+		
+		 document.getElementById('recommendForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const company = document.getElementById('company').value;
+    const phone = document.getElementById('phone').value;
+
+    fetch(`${globalUrl}/api/t_b027l3pp0xm:create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+           'Authorization': globalAuthorization
+		   },
+        body: JSON.stringify({
+            f_dqyjyfr32oc: name,
+            f_0rhoto1qdja: company,
+            f_qka4cw2ujm5: phone
+        })
+    })
+       .then(response => response.json())
+       .then(data => {
+            if (data.data && data.data.f_614mjkggdba) {
+                const referralCode = data.data.f_614mjkggdba;
+                const referralLink = `https://zywh.us.kg/lead-form.html?code=${referralCode}`;
+
+                document.getElementById('modalContent').innerHTML = `
+                    <h2 class="text-2xl font-bold mb-4">恭喜您成为推荐官</h2>
+                    <p class="mb-4">你的专属链接为：</p>
+                    <p class="text-blue-500 break-all">${referralLink}<button class="copy-btn bg-blue-500 hover:bg-blue-700 text-white ml-4 px-2 py-1 rounded">复制</button></p>
+                `;
+
+                const copyBtn = document.getElementById('modalContent').querySelector('.copy-btn');
+                copyBtn.addEventListener('click', () => {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = referralLink;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    const successDiv = document.createElement('div');
+                    successDiv.textContent = '复制成功';
+                    successDiv.classList.add('absolute', 'top-20', 'left-1/2', 'transform', '-translate-x-1/2', 'bg-green-500', 'text-white', 'px-4', 'py-2', 'rounded', 'copy-success', 'z-50');
+                    document.body.appendChild(successDiv);
+                    setTimeout(() => {
+                        successDiv.remove();
+                    }, 2000);
+                });
+            } else {
+                alert('提交失败，请稍后重试');
+            }
+        })
+       .catch(error => {
+            console.error('Error:', error);
+            alert('提交失败，请稍后重试');
+        });
+});
+    </script>
+	<script>
+    // 在页面加载完成后添加滚动事件监听器
+    window.addEventListener('DOMContentLoaded', function () {
+      const header = document.getElementById('tj');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 0) {
+          header.classList.add('fixed-header');
+        } else {
+          header.classList.remove('fixed-header');
+        }
+      });
+    });
+  </script>
+  <script>
+    document.getElementById('tjjl').addEventListener('click', function() {
+        window.location.href = 'referral-lookup.html';
+    });
+</script>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', () => {
+	  sendTrackingData('推荐有礼', '访问', document.referrer);
+	});
+	</script>
+<script src="com.js"></script>
+</body>
+</html>
