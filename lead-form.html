@@ -106,7 +106,8 @@
             
 			<button id="tjjl" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg inline-block">推荐记录</button>
         </section>
-    <script>
+    <script type="module">
+    		import { globalUrl, globalAuthorization } from './TK.js';
         document.addEventListener('DOMContentLoaded', function() {
             const referrerNameInput = document.getElementById('referrerName');
             const referrerPhoneInput = document.getElementById('referrerPhone');
@@ -165,9 +166,9 @@
             }
 
             function fetchData(filter, callback) {
-                axios.get(`http://192.168.3.105:13000/api/t_b027l3pp0xm:get?filter=${encodeURIComponent(filter)}`, {
+                axios.get(`${globalUrl}/api/t_b027l3pp0xm:get?filter=${encodeURIComponent(filter)}`, {
                     headers: {
-                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyNjcyNTQxNCwiZXhwIjoxNzI3MzMwMjE0fQ.PK4u0-LP_lxc6Abw2sGTwNqzZSj7TZqHZJzxcaI9JGs'
+                        'Authorization': globalAuthorization
                     }
                 })
                 .then(function (response) {
